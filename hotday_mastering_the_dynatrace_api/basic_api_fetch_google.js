@@ -92,7 +92,7 @@ function fetchSimple() {
     var k = Object.keys(result);
     // some APIs return the data in a result object. see if that's the case and move down a level if it is
     if (k.indexOf('result') > -1){
-      result = result.result;
+      r = result.result;
       k = Object.keys(result);
     }
     for (var x = 0; x < k.length; x++) {
