@@ -11,8 +11,37 @@
 function onOpen(e) {
   var ui = SpreadsheetApp.getUi(); // Reference to the SpreadsheetApp UI
   var menu = ui.createMenu('Dynatrace');
+  menu.addItem('Setup', 'setupSheets');
   menu.addItem('Run Host Report', 'fetchHosts');
   menu.addToUi();
+}
+
+function setupSheets() {
+  // get all the sheets in the spreadsheet
+  // spreadsheet object
+  var spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  var sheets = spreadsheet.getSheets();
+  // rename the existing sheets
+  for (var x = 0; x < sheets.length; x++) {
+    sheets[x].setName('delete' + x);
+  }
+  // insert two new sheets, oone for data and one for config
+  spreadsheet.insertSheet('Data', 0);
+  spreadsheet.insertSheet('Config', 1);
+  // delete the old sheets
+  for (var x = 0; x < sheets.length; x++) {
+    spreadsheet.deleteSheet(sheets[x]);
+  }
+  // set up the config sheet
+  var config_sheet = spreadsheet.getSheetByName('Config');
+  config_sheet.getRange(1, 1, 1, 5).setValues([['tenant id', 'api key', 'hostgroup', 'tags', 'show_candidates?']]);
+  // build dropdown for show candidates
+  var rule = SpreadsheetApp.newDataValidation()
+    .requireValueInList(['TRUE', 'FALSE'], true)
+    .setAllowInvalid(false)
+    .setHelpText('Please select true or false.')
+    .build();
+  config_sheet.getRange(2, 5).setDataValidation(rule)
 }
 
 function fetchHosts() {
@@ -93,5 +122,5 @@ function fetchHosts() {
   }
   // write the data to the sheet and make it look nice
   data_sheet.getRange(1, 1, data.length, data[0].length).setValues(data).applyRowBanding(SpreadsheetApp.BandingTheme.BLUE, true, false);
-  data_sheet.autoResizeColumns(1, data_sheet.getLastColumn());
+  data_sheet.autoResizeColumns(1, data_sheet.getLastColumn()); 
 }
