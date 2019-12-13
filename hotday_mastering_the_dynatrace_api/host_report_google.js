@@ -1,3 +1,12 @@
+/*
+********************************************************
+*                                                      *
+*  This script requires Google Apps Script associated  *
+*  with a Google Sheet in order to function.           *
+*                                                      *
+********************************************************
+*/
+
 // build menu and add to ui
 function onOpen(e) {
   var ui = SpreadsheetApp.getUi(); // Reference to the SpreadsheetApp UI
