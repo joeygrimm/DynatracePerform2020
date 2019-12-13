@@ -1,3 +1,11 @@
+/*
+********************************************************
+*                                                      *
+*  This script requires Office Script Lab and Excel    *
+*                                                      *
+********************************************************
+*/
+
 $("#run_simple").click(() => tryCatch(run_simple));
 $("#run_usql").click(() => tryCatch(run_usql));
 
