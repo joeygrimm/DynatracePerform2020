@@ -67,7 +67,7 @@ function fetchDashboard() {
   
   // fetch the data
   var headers = { 'Authorization': 'Api-Token ' + api_key }
-  var url = 'https://' + tenant + '.live.dynatrace.com/api/config/v1/dashboards/' + dashboard;
+  var url = 'https://' + tenant + '.sprint.dynatracelabs.com/api/config/v1/dashboards/' + dashboard;
   var result = UrlFetchApp.fetch(encodeURI(url), {'headers': headers});
   result = JSON.parse(result);
   
@@ -98,7 +98,7 @@ function updateDashboard() {
   // tenant
   var tenant = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Config').getRange(2, 1).getValue();
   // url for API
-  var url = 'https://' + tenant + '.live.dynatrace.com/api/config/v1/dashboards/' + dashboard;
+  var url = 'https://' + tenant + '.sprint.dynatracelabs.com/api/config/v1/dashboards/' + dashboard;
   
   // call processDashboard to handle the API call
   processDashboard(url, 'put', dashboard);
@@ -108,7 +108,7 @@ function createDashboard() {
   // tenant
   var tenant = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Config').getRange(2, 1).getValue();
   // url for API
-  var url = 'https://' + tenant + '.live.dynatrace.com/api/config/v1/dashboards';
+  var url = 'https://' + tenant + '.sprint.dynatracelabs.com/api/config/v1/dashboards';
   
   // call processDashboard to handle the API call
   processDashboard(url, 'post');
@@ -160,7 +160,7 @@ function processDashboard(url, method, id) {
     
   // display link to dashboard
   var htmlOutput = HtmlService
-    .createHtmlOutput('<a href="https://' + tenant + '.live.dynatrace.com/#dashboard;id=' + id + '" target="_blank">Check it out!</a>' +
+    .createHtmlOutput('<a href="https://' + tenant + '.sprint.dynatracelabs.com/#dashboard;id=' + id + '" target="_blank">Check it out!</a>' +
                       '<p>It may take a few seconds for the dashboard to get creted, so if it fails to load, just wait a few seconds and try again.</p>')
     .setWidth(600)
     .setHeight(120);
