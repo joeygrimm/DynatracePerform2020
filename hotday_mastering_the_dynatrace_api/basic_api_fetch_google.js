@@ -35,7 +35,7 @@ function fetchUSQL(){
   var headers = { 'Authorization': 'Api-Token ' + api_key }
   var start = new Date(config_sheet.getRange(2, 4).getValue()).getTime();
   var end = new Date(config_sheet.getRange(2, 5).getValue()).getTime();
-  var url = 'https://' + tenant + '.live.dynatrace.com/api/v1/userSessionQueryLanguage/table?startTimestamp=' + start + '&endTimestamp=' + end + '&query=' + usql_query;
+  var url = 'https://' + tenant + '.sprint.dynatracelabs.com/api/v1/userSessionQueryLanguage/table?startTimestamp=' + start + '&endTimestamp=' + end + '&query=' + usql_query;
   var result = UrlFetchApp.fetch(encodeURI(url), {'headers': headers});
   result = JSON.parse(result);
   
@@ -79,7 +79,7 @@ function fetchSimple() {
   
   // fetch the data
   var headers = { 'Authorization': 'Api-Token ' + api_key }
-  var url = 'https://' + tenant + '.live.dynatrace.com' + path;
+  var url = 'https://' + tenant + '.sprint.dynatracelabs.com' + path;
   var result = UrlFetchApp.fetch(encodeURI(url), {'headers': headers});
   result = JSON.parse(result);
   // build the output

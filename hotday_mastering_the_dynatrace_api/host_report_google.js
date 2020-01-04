@@ -69,7 +69,7 @@ function fetchHosts() {
   
   // fetch the data
   var headers = { 'Authorization': 'Api-Token ' + api_key }
-  var url = 'https://' + tenant + '.live.dynatrace.com/api/v1/entity/infrastructure/hosts?showMonitoringCandidates=' + candidates + host_group + tags;
+  var url = 'https://' + tenant + '.sprint.dynatracelabs.com/api/v1/entity/infrastructure/hosts?showMonitoringCandidates=' + candidates + host_group + tags;
   var result = UrlFetchApp.fetch(encodeURI(url), {'headers': headers});
   result = JSON.parse(result);
   

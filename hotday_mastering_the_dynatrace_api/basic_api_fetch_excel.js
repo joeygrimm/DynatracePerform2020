@@ -25,7 +25,7 @@ function run_simple() {
 
     return context.sync().then(async function() {
       // fetch the data
-      var url = "https://" + tenant.values + ".live.dynatrace.com" + path.values;
+      var url = "https://" + tenant.values + ".sprint.dynatracelabs.com" + path.values;
       var headers = { headers: { Authorization: "Api-Token " + api_key.values } };
       try {
         var result = await webRequest(url, headers);
@@ -101,7 +101,7 @@ function run_usql() {
       var url =
         "https://" +
         tenant.values +
-        ".live.dynatrace.com/api/v1/userSessionQueryLanguage/table?startTimestamp=" +
+        ".sprint.dynatracelabs.com/api/v1/userSessionQueryLanguage/table?startTimestamp=" +
         start +
         "&endTimestamp=" +
         end +
