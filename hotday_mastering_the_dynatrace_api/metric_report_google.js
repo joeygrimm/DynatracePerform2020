@@ -27,7 +27,7 @@ function setupSheets() {
   for (var x = 0; x < sheets.length; x++) {
     sheets[x].setName('delete' + x);
   }
-  // insert two new sheets, oone for data and one for config
+  // insert two new sheets, one for data and one for config
   spreadsheet.insertSheet('Data', 0);
   spreadsheet.insertSheet('Config', 1);
   // delete the old sheets
