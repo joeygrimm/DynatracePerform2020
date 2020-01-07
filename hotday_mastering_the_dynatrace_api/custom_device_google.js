@@ -79,7 +79,7 @@ function defineMetric() {
   // create the metric
   var headers = { 'Authorization': 'Api-Token ' + api_key,
                   'Content-Type': 'application/json' }
-  var url = 'https://' + tenant + '.live.dynatrace.com/api/v1/timeseries/custom:' + metric;
+  var url = 'https://' + tenant + '.sprint.dynatracelabs.com/api/v1/timeseries/custom:' + metric;
   var payload = { 'displayName': metric,
                   'types': ['custom'] }
   var result = UrlFetchApp.fetch(encodeURI(url), {'headers': headers, 'method': 'put', 'payload': JSON.stringify(payload), 'muteHttpExceptions': true});
@@ -166,7 +166,7 @@ function sendDevice(device_id) {
   // send the metric
   var headers = { 'Authorization': 'Api-Token ' + api_key,
                   'Content-Type': 'application/json' }
-  var url = 'https://' + tenant + '.live.dynatrace.com/api/v1/entity/infrastructure/custom/' + device_info[0][1]; // device_info[0][1] contains the hostname
+  var url = 'https://' + tenant + '.sprint.dynatracelabs.com/api/v1/entity/infrastructure/custom/' + device_info[0][1]; // device_info[0][1] contains the hostname
   var payload = { 'displayName': device_info[0][0],
                  'hostNames': [device_info[0][1]],
                  'ipAddresses': [device_info[0][2]],
