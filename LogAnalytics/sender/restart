@@ -1,0 +1,7 @@
+for i in $(ps -f |grep "java Perform2020/LogAnalytics/sender/sender"|grep -v grep); do
+    echo kill $i
+    kill $i
+done
+cd /home/dtu.training/
+javac Perform2020/LogAnalytics/sender/sender.java && \
+java Perform2020/LogAnalytics/sender/sender &

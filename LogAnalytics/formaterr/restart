@@ -1,0 +1,6 @@
+for i in $(ps -f |grep "node formaterr.js"|grep -v grep); do
+    echo kill $i
+    kill $i
+done
+cd /home/dtu.training/
+node Perform2020/LogAnalytics/formaterr/formaterr.js &

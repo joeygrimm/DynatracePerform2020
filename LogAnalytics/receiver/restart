@@ -1,0 +1,5 @@
+cd ~dtu.training/Perform2020/LogAnalytics/receiver
+docker container stop $(docker container ls -aq)
+docker system prune -f
+docker build -t dtu.training/receiver .
+docker run --log-driver json-file --log-opt max-size=100m -p 8081:8081 -d dtu.training/receiver
