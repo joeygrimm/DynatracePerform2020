@@ -48,7 +48,7 @@ function setupSheets() {
   );
   config_sheet.getRange(8, 2).setDataValidation(
     SpreadsheetApp.newDataValidation()
-    .requireValueInList(['APPLICATION', 'HOST', 'PROCESS_GROUP', 'SERVICE'])
+    .requireValueInList(['APPLICATION', 'HOST', 'CUSTOM_DEVICE', 'PROCESS_GROUP', 'SERVICE'])
     .build()
   );
   // set up date/time validation for start and end
@@ -79,5 +79,58 @@ function sendEvent() {
   // event data
   var event_data = config_sheet.getRange(4, 2, 8, 1).getValues();
   
+  // build the payload
+  var payload = {}
+  payload.eventType = event_data[0][0];
+  payload.start = new Date(event_data[1][0]).getTime();
+  payload.end = new Date(event_data[2][0]).getTime();
+  payload.source = "H.O.T. Day";
+  payload.attachRules = {
+    'tagRule': [
+      {
+        'meTypes': [
+          event_data[4][0]
+          ],
+        'tags': []
+      }
+      ]
+  }
   
+  // add tags to tag rule
+  for (var x = 0; x < event_data[3][0].split(',').length; x++) {
+    payload.attachRules.tagRule[0].tags.push({
+      'context': 'CONTEXTLESS',
+      'key': event_data[3][0].split(',')[x]
+    });
+  }
+  
+  // add custom props
+  var custom = {}
+  var t_custom = event_data[7][0].split(',');
+  for (var x = 0; x < t_custom.length; x++) {
+    custom[t_custom[x].split(':')[0].trim().replace("\n", '')] = t_custom[x].split(':')[1].trim().replace("\n", '');
+  }
+  payload.customProperties = custom;
+  
+  // based on type of event selected, finish up the payload
+  if (payload.eventType == 'CUSTOM_DEPLOYMENT'){
+    payload.deploymentName = event_data[5][0];
+    payload.customProperties.Notes = event_data[6][0];
+    payload.deploymentVersion = '0.0.1';
+  } else {
+    payload.title = event_data[5][0];
+    payload.description = event_data[6][0];
+  }
+  
+  // send the request to Dynatrace
+  var headers = { 'Authorization': 'Api-Token ' + api_key,
+                  'Content-Type': 'application/json' }
+  var url = 'https://' + tenant + '.live.dynatrace.com/api/v1/events';
+  var result = UrlFetchApp.fetch(encodeURI(url), {'headers': headers, 'method': 'post', 'payload': JSON.stringify(payload)});
+  Logger.log(JSON.parse(result));
+  
+  // let the user know we're good if we get a 200 back
+  if (result.getResponseCode() == 200) {
+    ui.alert('Event sent successfully!');
+  }
 }
