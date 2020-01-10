@@ -121,6 +121,9 @@ function fetchDatapoints() {
     SpreadsheetApp.getUi().alert('Please supply a metric either by adding it to the Config sheet or selecting it in the metrics list!');
     // end execution;
     return;
+  } else {
+    // write the selected metric to the config sheet
+    config_sheet.getRange(2, 3).setValue(metric);
   }
   
   // handle dates if they've been set
