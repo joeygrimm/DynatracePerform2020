@@ -1,19 +1,32 @@
-/*
-********************************************************
-*                                                      *
-*  This script requires Google Apps Script associated  *
-*  with a Google Sheet in order to function.           *
-*                                                      *
-********************************************************
-*/
-
 // build menu and add to ui
 function onOpen(e) {
   var ui = SpreadsheetApp.getUi(); // Reference to the SpreadsheetApp UI
   var menu = ui.createMenu('Dynatrace');
+  menu.addItem('Setup', 'setupSheets');
   menu.addItem('USQL API (Supply Query)', 'fetchUSQL');
   menu.addItem('Simple API (Supply Path)', 'fetchSimple');
   menu.addToUi();
+}
+
+function setupSheets() {
+  // get all the sheets in the spreadsheet
+  // spreadsheet object
+  var spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  var sheets = spreadsheet.getSheets();
+  // rename the existing sheets
+  for (var x = 0; x < sheets.length; x++) {
+    sheets[x].setName('delete' + x);
+  }
+  // insert two new sheets, oone for data and one for config
+  spreadsheet.insertSheet('Data', 0);
+  spreadsheet.insertSheet('Config', 1);
+  // delete the old sheets
+  for (var x = 0; x < sheets.length; x++) {
+    spreadsheet.deleteSheet(sheets[x]);
+  }
+  // set up the config sheet
+  var config_sheet = spreadsheet.getSheetByName('Config');
+  config_sheet.getRange(1, 1, 1, 3).setValues([['tenant id', 'api key', 'query/path']]);
 }
 
 function fetchUSQL(){
@@ -33,9 +46,7 @@ function fetchUSQL(){
   
   // fetch the data
   var headers = { 'Authorization': 'Api-Token ' + api_key }
-  var start = new Date(config_sheet.getRange(2, 4).getValue()).getTime();
-  var end = new Date(config_sheet.getRange(2, 5).getValue()).getTime();
-  var url = 'https://' + tenant + '.sprint.dynatracelabs.com/api/v1/userSessionQueryLanguage/table?startTimestamp=' + start + '&endTimestamp=' + end + '&query=' + usql_query;
+  var url = 'https://' + tenant + '.sprint.dynatracelabs.com/api/v1/userSessionQueryLanguage/table?query=' + usql_query;
   var result = UrlFetchApp.fetch(encodeURI(url), {'headers': headers});
   result = JSON.parse(result);
   
