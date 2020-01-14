@@ -24,19 +24,21 @@ usage()
     exit
 }
 
+if [[ $REPLY =~ ^[Yy]$ ]]; then
 
-echo "Cluster created"
+	echo "Deploying OneAgent Operator"
 
-echo "Deploying OneAgent Operator"
+	../utils/deploy-dt-operator.sh
 
-../utils/deploy-dt-operator.sh
+	echo "Waiting for OneAgent to startup..."
+	sleep 120
 
-echo "Waiting for OneAgent to startup..."
-sleep 120
+	echo "Deploying SockShop Application"
+	../utils/deploy-sockshop.sh
 
-echo "Deploying SockShop Application"
-../utils/deploy-sockshop.sh
+	sleep 120
 
-sleep 120
-
-echo "Deployment Complete"
+	echo "Deployment Complete"
+else
+	exit 1
+fi
