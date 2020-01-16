@@ -1,0 +1,59 @@
+{
+  "name": "custom.remote.python.space_x",
+  "version": "0.5",
+  "type": "python",
+  "entity": "CUSTOM_DEVICE",
+  "processTypeNames": ["PYTHON"],
+  "technologies": ["SpaceX Ships"],
+  "metricGroup": "spacex",
+  "source": {
+    "package": "space_x_plugin",
+    "className": "SpaceXPlugin",
+    "install_requires": ["requests>=2.6.0"],
+    "activation": "Remote"
+  },
+  "metrics": [
+    {
+      "timeseries": {
+        "key": "thrust",
+        "unit": "Percent",
+        "displayname": "Thrust",
+        "dimensions": [ "engine" ]
+      }
+    },      {
+      "timeseries": {
+        "key": "fuel",
+        "unit": "Unspecified",
+        "aggregation": "avg",
+        "displayname": "Fuel"
+      }
+    },    
+    {
+      "timeseries": {
+        "key": "speed",
+        "unit": "Unspecified",
+        "aggregation": "avg",
+        "displayname": "Speed(Knots)"
+      }
+    }      
+  ],
+  "ui": {
+    "keymetrics" : [],
+    "keycharts": [],
+    "charts": []
+  },
+  "properties" : [
+		{
+      "key": "url",
+      "type": "String",
+      "defaultValue": "http://localhost:5000",
+      "displayOrder": 1
+		}    
+  ],
+  "configUI" :{
+    "displayName": "Space X",
+    "properties" : [
+      { "key" : "url", "displayName": "URL", "displayOrder": 1 }
+		]
+  }
+}

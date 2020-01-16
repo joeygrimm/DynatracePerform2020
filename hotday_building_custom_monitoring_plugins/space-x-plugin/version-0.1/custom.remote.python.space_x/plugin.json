@@ -1,0 +1,34 @@
+{
+  "name": "custom.remote.python.space_x",
+  "version": "0.1",
+  "type": "python",
+  "entity": "CUSTOM_DEVICE",
+  "processTypeNames": ["PYTHON"],
+  "technologies": ["SpaceX Ships"],
+  "metricGroup": "spacex",
+  "source": {
+    "package": "space_x_plugin",
+    "className": "SpaceXPlugin",
+    "activation": "Remote"
+  },
+  "metrics": [
+    {
+      "timeseries": {
+        "key": "fuel",
+        "unit": "Unspecified",
+        "aggregation": "avg",
+        "displayname": "Fuel"
+      }
+    }      
+  ],
+  "ui": {
+    "keymetrics" : [],
+    "keycharts": [],
+    "charts": []
+  },
+  "properties" : [],
+  "configUI" :{
+    "displayName": "Space X",
+    "properties" : []
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "name": "custom.remote.python.space_x",
+  "version": "0.7",
+  "type": "python",
+  "entity": "CUSTOM_DEVICE",
+  "processTypeNames": ["PYTHON"],
+  "technologies": ["SpaceX Ships"],
+  "metricGroup": "spacex",
+  "source": {
+    "package": "space_x_plugin",
+    "className": "SpaceXPlugin",
+    "install_requires": ["requests>=2.6.0"],
+    "activation": "Remote"
+  },
+  "metrics": [
+    {
+      "timeseries": {
+        "key": "thrust",
+        "unit": "Percent",
+        "displayname": "Thrust",
+        "dimensions": [ "engine" ]
+      }
+    },      {
+      "timeseries": {
+        "key": "fuel",
+        "unit": "Unspecified",
+        "aggregation": "avg",
+        "displayname": "Fuel"
+      }
+    },    
+    {
+      "timeseries": {
+        "key": "speed",
+        "unit": "Unspecified",
+        "aggregation": "avg",
+        "displayname": "Speed(Knots)"
+      }
+    }      
+  ],
+  "ui": {
+    "keymetrics" : [
+      {
+        "key" : "thrust",
+        "aggregation" : "avg",
+        "mergeaggregation" : "avg",
+        "displayname" : "Thrust"
+      },
+      {
+        "key": "speed",
+        "aggregation" : "avg",
+        "mergeaggregation" : "avg",
+        "displayname": "Speed(Knots)"
+      }
+    ],
+    "keycharts": [],
+    "charts": [
+      {
+        "group": "Thrust",
+        "title": "Thrust",
+        "description": "Thrust",
+        "series": [
+          {
+            "key": "thrust",
+            "aggregation": "avg",
+            "mergeaggregation" : "avg",
+            "displayname": "Thrust",
+            "dimensions": [ "engine" ]
+          }
+        ]
+      },
+      {
+        "group": "Fuel",
+        "title": "Fuel",
+        "description": "Fuel",
+        "series": [
+          {
+            "key": "fuel",
+            "aggregation": "min",
+            "displayname": "Fuel"
+          }
+        ]
+      }
+    ]
+  },
+  "properties" : [
+		{
+      "key": "url",
+      "type": "String",
+      "defaultValue": "http://localhost:5000",
+      "displayOrder": 1
+		}    
+  ],
+  "configUI" :{
+    "displayName": "Space X",
+    "properties" : [
+      { "key" : "url", "displayName": "URL", "displayOrder": 1 }
+		]
+  }
+}
