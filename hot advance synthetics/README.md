@@ -6,13 +6,6 @@ Here you will find all the content you need for the class. Feel free to download
 
 The content you will find here will be the actual synthetic config files (to be uploaded via script mode) and the API json files (to be uploaded via Dynatrace API)
 
-### Prerequisites
-
-What things you need to install the software and how to install them
-
-```
-Give examples
-```
 ### Helful references
 
 	+ CSS Selector Tester extension -- https://chrome.google.com/webstore/detail/css-selector-tester/bbklnaodgoocmcdejoalmbjihhdkbfon
