@@ -13,6 +13,11 @@ What things you need to install the software and how to install them
 ```
 Give examples
 ```
+### Helful references
+
+	+ CSS Selector Tester extension -- https://chrome.google.com/webstore/detail/css-selector-tester/bbklnaodgoocmcdejoalmbjihhdkbfon
+	+ CSS Selector Reference and examples -- https://www.w3schools.com/cssref/css_selectors.asp
+
 
 ### Installing
 
