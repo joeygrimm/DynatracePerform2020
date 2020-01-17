@@ -24,9 +24,24 @@ Give examples
 NBA API url: https://free-nba.p.rapidapi.com/games
 
 
-## Running the tests
+## Advanced exercises included
 
-Explain how to run the automated tests for this system
+We will have 7 browser clickpaths and one HTTP monitor with some advance synthetic concepts:
+
+* Modifying Locators
+
+* Global Variable Example (Create at Date)
+	
+* Global Variable Example #2 (Post Save Variable)
+
+* Modify locator instead of using JavaScript Event
+
+* Fetch()/XHR mid Clickpath
+
+* Conditional Event
+
+* HTTP monitor with pre and post execution scripts
+
 
 ### Break down into end to end tests
 
