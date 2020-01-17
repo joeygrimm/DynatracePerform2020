@@ -1,0 +1,32 @@
+Starting script: ET - default.json
+
+Helpful references
+	+ CSS Selector Tester extension -- https://chrome.google.com/webstore/detail/css-selector-tester/bbklnaodgoocmcdejoalmbjihhdkbfon
+	+ CSS Selector Reference and examples -- https://www.w3schools.com/cssref/css_selectors.asp
+
+Clickpath
+* Modifying Locators
+	-> Changing step 2 to click the second "Book Now" button instead of the first one (ET - Second button.json)
+	-> Removed all but 2 locators, and edited those two
+* Global Variable Example (Create at Date)
+	-> Generate a date 90 days and another 2 days after that, and use them in the front page date fields (ET - set dates.json)
+	-> Insert a JavaScript step after loading the home page, insert Keystrokes steps for the date fields
+* Global Variable Example #2 (Post Save Variable)
+	-> Pull the city name from the first "Book Me" box and use it in the "Trip Destination" field (ET - destination.json)
+	-> Insert a JavaScript that scrapes the city name and pastes it into the Trip Destination field
+* Modify locator instead of using JavaScript Event
+	-> Replace the portion of the JavaScript that writes the city name to the page with a Keystrokes step (ET - JS destination.json)
+	-> Edit out the portion of the JavaScript step, add a line to save the city name, and insert a Keystrokes step using the city name
+* Fetch()/XHR mid Clickpath
+	-> Download the Special Offers page with a fetch()  (ET - get SpecOffers.json)
+	-> Insert a JavaScript step after logging in (after "Select User") and use a fetch() method to download the Special Offers HTML
+	- This method can be used to retrieve data without modifying the displayed webpage
+* Conditional Event
+	-> Based total dollar amount for average per person, either change the number of people to 3 or not (ET - conditional skip.json)
+	-> Insert a JavaScript step after logging in (or use the existing JS step used for the fetch())
+
+HTTP (Can’t play back locally!) (NBA API Demo.json)
+* Post-Request -- Step 1: a random game ID is saved for the second step's URL
+* Pre-Request -- Adds the required headers in each step
+* Conditional Event -- Step 1 post-request script causes step 2 to be skipped if the current time is an even hour
+* Error Failing -- Step 1 checks the response to make sure at least ten results are returned, failing if there are not
