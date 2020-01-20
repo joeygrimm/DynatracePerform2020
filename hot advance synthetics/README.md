@@ -16,24 +16,15 @@ The content you will find here will be the actual synthetic config files (to be 
 
 NBA API url: https://free-nba.p.rapidapi.com/games
 
- 
-Credit card type​VISA​
+For the first HO session: 
 
-Credit card number​
-
-4750112593552391309​
-
-Name​
-
-Maria O'Donnel​
-
-Exp date​
-
-December 2022​
-
-Verification number​
-
-1303​
+| Description | Input data |
+| --- | --- |
+| Credit card type | Visa |
+| Credit card number | 4750112593552391309 |
+| Name | Maria O'Donnel |
+| Exp Date | December 2022 |
+| Verification Number | 1303 |
 
 
 ## Advanced exercises included
