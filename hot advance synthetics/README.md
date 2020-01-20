@@ -16,6 +16,25 @@ The content you will find here will be the actual synthetic config files (to be 
 
 NBA API url: https://free-nba.p.rapidapi.com/games
 
+ 
+Credit card type​VISA​
+
+Credit card number​
+
+4750112593552391309​
+
+Name​
+
+Maria O'Donnel​
+
+Exp date​
+
+December 2022​
+
+Verification number​
+
+1303​
+
 
 ## Advanced exercises included
 
