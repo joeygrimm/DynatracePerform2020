@@ -1,0 +1,59 @@
+{
+	"version": "1.0",
+	"requests": [
+		{
+			"description": "Get All Games",
+			"url": "https://free-nba.p.rapidapi.com/games",
+			"method": "GET",
+			"requestBody": "",
+			"validation": {
+				"rules": [
+					{
+						"value": "abbreviation",
+						"passIfFound": true,
+						"type": "patternConstraint"
+					},
+					{
+						"value": ">=400",
+						"passIfFound": false,
+						"type": "httpStatusesList"
+					}
+				],
+				"rulesChaining": "or"
+			},
+			"configuration": {
+				"acceptAnyCertificate": true,
+				"followRedirects": true
+			},
+			"preProcessingScript": "request.addHeader(\"x-rapidapi-key\", \"5de4e1a0camsh95ce0a9d10433a6p10ab32jsn64b5af1b1b3e\");\nrequest.addHeader(\"x-rapidapi-host\", \"free-nba.p.rapidapi.com\");",
+			"postProcessingScript": "// Retrieve the content returned by the API and parse it into a JS object\ncontent = response.getResponseBody();\nobj = JSON.parse(content);\n\n// Make sure at least 10 games are listed in the data\nif (obj.data.length < 10) {\n    api.fail('Only '+obj.data.length+' games in the response');\n}\n\n// Select a random game ID to use in the next step's URL (getting a specific game)\nlen = obj.data.length;\nid = obj.data[Math.floor(Math.random()*len)].id;\napi.setValue(\"id\", id);\n\n// If the current hour is an even number, skip step 2\nnow = new Date();\nhour = now.getHours();\nif (hour%2===0) {\n    api.skipNextSyntheticRequest();\n}"
+		},
+		{
+			"description": "Get One Game",
+			"url": "https://free-nba.p.rapidapi.com/games/{id}",
+			"method": "GET",
+			"requestBody": "",
+			"validation": {
+				"rules": [
+					{
+						"value": "visitor_team_score",
+						"passIfFound": true,
+						"type": "patternConstraint"
+					},
+					{
+						"value": ">=400",
+						"passIfFound": false,
+						"type": "httpStatusesList"
+					}
+				],
+				"rulesChaining": "or"
+			},
+			"configuration": {
+				"acceptAnyCertificate": true,
+				"followRedirects": true
+			},
+			"preProcessingScript": "request.addHeader(\"x-rapidapi-key\", \"5de4e1a0camsh95ce0a9d10433a6p10ab32jsn64b5af1b1b3e\");\nrequest.addHeader(\"x-rapidapi-host\", \"free-nba.p.rapidapi.com\");",
+			"postProcessingScript": "content = response.getResponseBody();\nobj = JSON.parse(content);"
+		}
+	]
+}

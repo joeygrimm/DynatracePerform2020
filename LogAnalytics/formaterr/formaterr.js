@@ -22,7 +22,7 @@ const server = http.createServer((req, res) => {
     if(Qs.submit=="Update" && typeof(Qs.tsformat)=="string") ts.format = Qs.tsformat;
     if(Qs.submit=="Roll Log") rollLog();
     let html = "<html><head><title>Set TS format</title></head><body><form method=GET action='/ts'>" +
-        "<input name=tsformat value='" + ts.format +"'><input type=submit name=submit value='Update'></form>" +
+        "<input name=tsformat value='" + ts.format +"' style='width:200px;'><input type=submit name=submit value='Update'></form>" +
         "<form method=GET action='/ts'><input type=submit name=submit value='Roll Log'></form><p>For date format specs, see: " +
         "<a target=_blank href='https://momentjs.com/docs/#/displaying/format/'>moment().format()</a></body></html>";
     res.statusCode = 200;

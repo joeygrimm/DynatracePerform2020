@@ -1,0 +1,350 @@
+{
+    "configuration": {
+        "device": {
+            "orientation": "landscape",
+            "deviceName": "Desktop"
+        }
+    },
+    "type": "clickpath",
+    "version": "1.0",
+    "events": [{
+        "type": "navigate",
+        "wait": {
+            "waitFor": "page_complete"
+        },
+        "description": "Homepage",
+        "url": "http://3.215.251.97:8080/orange.jsf"
+    }, {
+        "type": "javascript",
+        "description": "Enter Trip Destination",
+        "javaScript": "cityName = document.querySelector('span.iceOutTxt.journeyName').innerText;\napi.info('Using city: ' + cityName);\napi.setValue(\"cityName\", cityName);\n//tripDest = document.querySelector('[id=\"iceform:destination\"]');\n//tripDest.value = cityName;"
+    }, {
+        "type": "keystrokes",
+        "target": {
+            "locators": [{
+                "type": "css",
+                "value": "[id=\"iceform:destination\"]"
+            }]
+        },
+        "masked": false,
+        "simulateBlurEvent": true,
+        "description": "Enter Trip Destination",
+        "textValue": "{cityName}"
+    }, {
+        "type": "javascript",
+        "description": "Generate Dates",
+        "javaScript": "// Creating a string for the date 90 dates from today\nfromDate = new Date();\nfromDate.setDate(fromDate.getDate()+90);\nfromDateStr = (fromDate.getMonth()+1) + '/' + fromDate.getDate() + '/' + fromDate.getFullYear();\n// Output to the log\napi.info('From Date: '+fromDateStr);\n// Store the date string in the variable / placeholder \"fromDate\"\napi.setValue(\"fromDate\", fromDateStr);toDate = new Date();\n\n// Repeat for the To date\ntoDate.setDate(toDate.getDate()+92);\ntoDateStr = (toDate.getMonth()+1) + '/' + toDate.getDate() + '/' + toDate.getFullYear();\napi.info('To Date: '+toDateStr);\napi.setValue(\"toDate\", toDateStr);"
+    }, {
+        "type": "keystrokes",
+        "target": {
+            "locators": [{
+                "type": "css",
+                "value": "#iceform\\:fromDate"
+            }]
+        },
+        "masked": false,
+        "simulateBlurEvent": true,
+        "description": "Set From Date",
+        "textValue": "{fromDate}"
+    }, {
+        "type": "keystrokes",
+        "target": {
+            "locators": [{
+                "type": "css",
+                "value": "#iceform\\:toDate"
+            }]
+        },
+        "masked": false,
+        "simulateBlurEvent": true,
+        "description": "Set To Date",
+        "textValue": "{toDate}"
+    }, {
+        "type": "click",
+        "wait": {
+            "waitFor": "page_complete"
+        },
+        "target": {
+            "locators": [{
+                "type": "css",
+                "value": "a:contains(\"Book Now\"):eq(2)"
+            }, {
+                "type": "css",
+                "value": "div.resultBox:eq(1) a.commonButton"
+            }]
+        },
+        "button": 0,
+        "description": "Book Now"
+    }, {
+        "type": "click",
+        "wait": {
+            "waitFor": "network"
+        },
+        "target": {
+            "locators": [{
+                "type": "css",
+                "value": "#iceform\\:j_idt154"
+            }, {
+                "type": "css",
+                "value": "input[type=\"image\"][src$=\"img/privacypolicy_lock.png\"][name=\"iceform:j_idt154\"]"
+            }, {
+                "type": "css",
+                "value": ".iceCmdBtn:eq(3)"
+            }, {
+                "type": "css",
+                "value": "#iceform\\:j_idt153 input:nth-child(2)"
+            }]
+        },
+        "button": 0,
+        "description": "Privacy Lock"
+    }, {
+        "type": "click",
+        "wait": {
+            "waitFor": "network"
+        },
+        "target": {
+            "locators": [{
+                "type": "css",
+                "value": "#iceform\\:j_idt156\\:0\\:j_idt157"
+            }, {
+                "type": "css",
+                "value": "a:contains(\"barbara\"):eq(2)"
+            }, {
+                "type": "css",
+                "value": "div:contains(\"siddhartamer\"):eq(13)"
+            }, {
+                "type": "css",
+                "value": ".iceCmdLnk:eq(41)"
+            }, {
+                "type": "css",
+                "value": "#iceform\\:j_idt156 a"
+            }]
+        },
+        "button": 0,
+        "description": "Select User"
+    }, {
+        "type": "click",
+        "wait": {
+            "waitFor": "page_complete"
+        },
+        "target": {
+            "locators": [{
+                "type": "css",
+                "value": "#iceform\\:bookReviewNext"
+            }, {
+                "type": "css",
+                "value": "a:contains(\"Next\")"
+            }, {
+                "type": "css",
+                "value": "div:contains(\"To look for a different journey please press the\"):eq(4)"
+            }, {
+                "type": "css",
+                "value": ".commonButton:eq(5)"
+            }, {
+                "type": "css",
+                "value": "#iceform div:nth-child(5) a:nth-child(7)"
+            }]
+        },
+        "button": 0,
+        "description": "Next"
+    }, {
+        "type": "click",
+        "wait": {
+            "waitFor": "network"
+        },
+        "target": {
+            "locators": [{
+                "type": "css",
+                "value": "#iceform\\:creditCardNumber"
+            }, {
+                "type": "css",
+                "value": "input[type=\"text\"][name=\"iceform:creditCardNumber\"]"
+            }, {
+                "type": "dom",
+                "value": "document.forms[1][5]"
+            }, {
+                "type": "css",
+                "value": ".iceInpTxt:eq(1)"
+            }, {
+                "type": "css",
+                "value": "#iceform\\:j_idt78-1-1 input"
+            }]
+        },
+        "button": 0,
+        "description": "Click Credit Card"
+    }, {
+        "type": "keystrokes",
+        "target": {
+            "locators": [{
+                "type": "css",
+                "value": "#iceform\\:creditCardNumber"
+            }, {
+                "type": "css",
+                "value": "input[type=\"text\"][name=\"iceform:creditCardNumber\"]"
+            }, {
+                "type": "dom",
+                "value": "document.forms[1][5]"
+            }, {
+                "type": "css",
+                "value": ".iceInpTxt:eq(1)"
+            }, {
+                "type": "css",
+                "value": "#iceform\\:j_idt78-1-1 input"
+            }]
+        },
+        "masked": false,
+        "simulateBlurEvent": true,
+        "description": "Enter Credit Card",
+        "textValue": "4111111111111111"
+    }, {
+        "type": "keystrokes",
+        "target": {
+            "locators": [{
+                "type": "css",
+                "value": "#iceform\\:creditCardOwner"
+            }, {
+                "type": "css",
+                "value": "input[type=\"text\"][name=\"iceform:creditCardOwner\"]"
+            }, {
+                "type": "dom",
+                "value": "document.forms[1][6]"
+            }, {
+                "type": "css",
+                "value": ".iceInpTxt:eq(2)"
+            }, {
+                "type": "css",
+                "value": "#iceform\\:j_idt88 input"
+            }]
+        },
+        "masked": false,
+        "simulateBlurEvent": true,
+        "description": "Enter CC Owner",
+        "textValue": "Dynatrace Test"
+    }, {
+        "type": "selectOption",
+        "target": {
+            "locators": [{
+                "type": "css",
+                "value": "#iceform\\:expirationMonth"
+            }, {
+                "type": "css",
+                "value": "select[name=\"iceform:expirationMonth\"]"
+            }, {
+                "type": "dom",
+                "value": "document.forms[1][7]"
+            }, {
+                "type": "css",
+                "value": "div:contains(\"Please ensure expiration date is correct\"):eq(6)"
+            }, {
+                "type": "css",
+                "value": ".iceSelOneMnu:eq(1)"
+            }, {
+                "type": "css",
+                "value": "#iceform\\:j_idt91 select"
+            }]
+        },
+        "description": "Select Expiration Date",
+        "selections": [{
+            "index": 1,
+            "value": "January"
+        }]
+    }, {
+        "type": "selectOption",
+        "target": {
+            "locators": [{
+                "type": "css",
+                "value": "#iceform\\:expirationYear"
+            }, {
+                "type": "css",
+                "value": "select[name=\"iceform:expirationYear\"]"
+            }, {
+                "type": "dom",
+                "value": "document.forms[1][8]"
+            }, {
+                "type": "css",
+                "value": "div:contains(\"Please ensure expiration date is correct\"):eq(6)"
+            }, {
+                "type": "css",
+                "value": ".iceSelOneMnu:eq(2)"
+            }, {
+                "type": "css",
+                "value": "#iceform\\:j_idt91 select:nth-child(2)"
+            }]
+        },
+        "description": "Select Expiration Year",
+        "selections": [{
+            "index": 5,
+            "value": "2023"
+        }]
+    }, {
+        "type": "click",
+        "target": {
+            "locators": [{
+                "type": "css",
+                "value": "#iceform\\:verificationNumber"
+            }, {
+                "type": "css",
+                "value": "input[type=\"text\"][name=\"iceform:verificationNumber\"]"
+            }, {
+                "type": "dom",
+                "value": "document.forms[1][9]"
+            }, {
+                "type": "css",
+                "value": ".iceInpTxt:eq(3)"
+            }, {
+                "type": "css",
+                "value": "#iceform\\:j_idt108 input"
+            }]
+        },
+        "button": 0,
+        "description": "Click Verification Number"
+    }, {
+        "type": "keystrokes",
+        "target": {
+            "locators": [{
+                "type": "css",
+                "value": "#iceform\\:verificationNumber"
+            }, {
+                "type": "css",
+                "value": "input[type=\"text\"][name=\"iceform:verificationNumber\"]"
+            }, {
+                "type": "dom",
+                "value": "document.forms[1][9]"
+            }, {
+                "type": "css",
+                "value": ".iceInpTxt:eq(3)"
+            }, {
+                "type": "css",
+                "value": "#iceform\\:j_idt108 input"
+            }]
+        },
+        "masked": false,
+        "simulateBlurEvent": true,
+        "description": "Enter Verification Number",
+        "textValue": "123"
+    }, {
+        "type": "click",
+        "wait": {
+            "waitFor": "network"
+        },
+        "target": {
+            "locators": [{
+                "type": "css",
+                "value": "#iceform\\:bookPaymentNext"
+            }, {
+                "type": "css",
+                "value": "input[type=\"submit\"][name=\"iceform:bookPaymentNext\"]"
+            }, {
+                "type": "dom",
+                "value": "document.forms[1][10]"
+            }, {
+                "type": "css",
+                "value": ".iceCmdBtn:eq(4)"
+            }, {
+                "type": "css",
+                "value": "#iceform div:nth-child(6) input:nth-child(7)"
+            }]
+        },
+        "button": 0,
+        "description": "Submit CC"
+    }]
+}

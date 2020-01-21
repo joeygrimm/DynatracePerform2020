@@ -1,0 +1,494 @@
+{
+  "name": "ET - Second Button",
+  "frequencyMin": 15,
+  "enabled": true,
+  "type": "BROWSER",
+  "createdFrom": "GUI",
+  "script": {
+    "type": "clickpath",
+    "version": "1.0",
+    "configuration": {
+      "device": {
+        "deviceName": "Desktop",
+        "orientation": "landscape"
+      }
+    },
+    "events": [
+      {
+        "type": "navigate",
+        "description": "Homepage",
+        "url": "http://3.215.251.97:8080/orange.jsf",
+        "wait": {
+          "waitFor": "page_complete"
+        }
+      },
+      {
+        "type": "click",
+        "description": "Book Now",
+        "target": {
+          "locators": [
+            {
+              "type": "css",
+              "value": "a:contains(\"Book Now\"):eq(2)"
+            },
+            {
+              "type": "css",
+              "value": "div.resultBox:eq(1) a.commonButton"
+            }
+          ]
+        },
+        "button": 0,
+        "wait": {
+          "waitFor": "page_complete"
+        }
+      },
+      {
+        "type": "click",
+        "description": "Privacy Lock",
+        "target": {
+          "locators": [
+            {
+              "type": "css",
+              "value": "#iceform\\:j_idt154"
+            },
+            {
+              "type": "css",
+              "value": "input[type=\"image\"][src$=\"img/privacypolicy_lock.png\"][name=\"iceform:j_idt154\"]"
+            },
+            {
+              "type": "css",
+              "value": ".iceCmdBtn:eq(3)"
+            },
+            {
+              "type": "css",
+              "value": "#iceform\\:j_idt153 input:nth-child(2)"
+            }
+          ]
+        },
+        "button": 0,
+        "wait": {
+          "waitFor": "network"
+        }
+      },
+      {
+        "type": "click",
+        "description": "Select User",
+        "target": {
+          "locators": [
+            {
+              "type": "css",
+              "value": "#iceform\\:j_idt156\\:0\\:j_idt157"
+            },
+            {
+              "type": "css",
+              "value": "a:contains(\"barbara\"):eq(2)"
+            },
+            {
+              "type": "css",
+              "value": "div:contains(\"siddhartamer\"):eq(13)"
+            },
+            {
+              "type": "css",
+              "value": ".iceCmdLnk:eq(41)"
+            },
+            {
+              "type": "css",
+              "value": "#iceform\\:j_idt156 a"
+            }
+          ]
+        },
+        "button": 0,
+        "wait": {
+          "waitFor": "network"
+        }
+      },
+      {
+        "type": "click",
+        "description": "Next",
+        "target": {
+          "locators": [
+            {
+              "type": "css",
+              "value": "#iceform\\:bookReviewNext"
+            },
+            {
+              "type": "css",
+              "value": "a:contains(\"Next\")"
+            },
+            {
+              "type": "css",
+              "value": "div:contains(\"To look for a different journey please press the\"):eq(4)"
+            },
+            {
+              "type": "css",
+              "value": ".commonButton:eq(5)"
+            },
+            {
+              "type": "css",
+              "value": "#iceform div:nth-child(5) a:nth-child(7)"
+            }
+          ]
+        },
+        "button": 0,
+        "wait": {
+          "waitFor": "page_complete"
+        }
+      },
+      {
+        "type": "click",
+        "description": "Click Credit Card",
+        "target": {
+          "locators": [
+            {
+              "type": "css",
+              "value": "#iceform\\:creditCardNumber"
+            },
+            {
+              "type": "css",
+              "value": "input[type=\"text\"][name=\"iceform:creditCardNumber\"]"
+            },
+            {
+              "type": "dom",
+              "value": "document.forms[1][5]"
+            },
+            {
+              "type": "css",
+              "value": ".iceInpTxt:eq(1)"
+            },
+            {
+              "type": "css",
+              "value": "#iceform\\:j_idt78-1-1 input"
+            }
+          ]
+        },
+        "button": 0,
+        "wait": {
+          "waitFor": "network"
+        }
+      },
+      {
+        "type": "keystrokes",
+        "description": "Enter Credit Card",
+        "target": {
+          "locators": [
+            {
+              "type": "css",
+              "value": "#iceform\\:creditCardNumber"
+            },
+            {
+              "type": "css",
+              "value": "input[type=\"text\"][name=\"iceform:creditCardNumber\"]"
+            },
+            {
+              "type": "dom",
+              "value": "document.forms[1][5]"
+            },
+            {
+              "type": "css",
+              "value": ".iceInpTxt:eq(1)"
+            },
+            {
+              "type": "css",
+              "value": "#iceform\\:j_idt78-1-1 input"
+            }
+          ]
+        },
+        "textValue": "4111111111111111",
+        "masked": false,
+        "simulateBlurEvent": true
+      },
+      {
+        "type": "keystrokes",
+        "description": "Enter CC Owner",
+        "target": {
+          "locators": [
+            {
+              "type": "css",
+              "value": "#iceform\\:creditCardOwner"
+            },
+            {
+              "type": "css",
+              "value": "input[type=\"text\"][name=\"iceform:creditCardOwner\"]"
+            },
+            {
+              "type": "dom",
+              "value": "document.forms[1][6]"
+            },
+            {
+              "type": "css",
+              "value": ".iceInpTxt:eq(2)"
+            },
+            {
+              "type": "css",
+              "value": "#iceform\\:j_idt88 input"
+            }
+          ]
+        },
+        "textValue": "Dynatrace Test",
+        "masked": false,
+        "simulateBlurEvent": true
+      },
+      {
+        "type": "selectOption",
+        "description": "Select Expiration Date",
+        "target": {
+          "locators": [
+            {
+              "type": "css",
+              "value": "#iceform\\:expirationMonth"
+            },
+            {
+              "type": "css",
+              "value": "select[name=\"iceform:expirationMonth\"]"
+            },
+            {
+              "type": "dom",
+              "value": "document.forms[1][7]"
+            },
+            {
+              "type": "css",
+              "value": "div:contains(\"Please ensure expiration date is correct\"):eq(6)"
+            },
+            {
+              "type": "css",
+              "value": ".iceSelOneMnu:eq(1)"
+            },
+            {
+              "type": "css",
+              "value": "#iceform\\:j_idt91 select"
+            }
+          ]
+        },
+        "selections": [
+          {
+            "value": "January",
+            "index": 1
+          }
+        ]
+      },
+      {
+        "type": "selectOption",
+        "description": "Select Expiration Year",
+        "target": {
+          "locators": [
+            {
+              "type": "css",
+              "value": "#iceform\\:expirationYear"
+            },
+            {
+              "type": "css",
+              "value": "select[name=\"iceform:expirationYear\"]"
+            },
+            {
+              "type": "dom",
+              "value": "document.forms[1][8]"
+            },
+            {
+              "type": "css",
+              "value": "div:contains(\"Please ensure expiration date is correct\"):eq(6)"
+            },
+            {
+              "type": "css",
+              "value": ".iceSelOneMnu:eq(2)"
+            },
+            {
+              "type": "css",
+              "value": "#iceform\\:j_idt91 select:nth-child(2)"
+            }
+          ]
+        },
+        "selections": [
+          {
+            "value": "2023",
+            "index": 5
+          }
+        ]
+      },
+      {
+        "type": "click",
+        "description": "Click Verification Number",
+        "target": {
+          "locators": [
+            {
+              "type": "css",
+              "value": "#iceform\\:verificationNumber"
+            },
+            {
+              "type": "css",
+              "value": "input[type=\"text\"][name=\"iceform:verificationNumber\"]"
+            },
+            {
+              "type": "dom",
+              "value": "document.forms[1][9]"
+            },
+            {
+              "type": "css",
+              "value": ".iceInpTxt:eq(3)"
+            },
+            {
+              "type": "css",
+              "value": "#iceform\\:j_idt108 input"
+            }
+          ]
+        },
+        "button": 0
+      },
+      {
+        "type": "keystrokes",
+        "description": "Enter Verification Number",
+        "target": {
+          "locators": [
+            {
+              "type": "css",
+              "value": "#iceform\\:verificationNumber"
+            },
+            {
+              "type": "css",
+              "value": "input[type=\"text\"][name=\"iceform:verificationNumber\"]"
+            },
+            {
+              "type": "dom",
+              "value": "document.forms[1][9]"
+            },
+            {
+              "type": "css",
+              "value": ".iceInpTxt:eq(3)"
+            },
+            {
+              "type": "css",
+              "value": "#iceform\\:j_idt108 input"
+            }
+          ]
+        },
+        "textValue": "123",
+        "masked": false,
+        "simulateBlurEvent": true
+      },
+      {
+        "type": "click",
+        "description": "Submit CC",
+        "target": {
+          "locators": [
+            {
+              "type": "css",
+              "value": "#iceform\\:bookPaymentNext"
+            },
+            {
+              "type": "css",
+              "value": "input[type=\"submit\"][name=\"iceform:bookPaymentNext\"]"
+            },
+            {
+              "type": "dom",
+              "value": "document.forms[1][10]"
+            },
+            {
+              "type": "css",
+              "value": ".iceCmdBtn:eq(4)"
+            },
+            {
+              "type": "css",
+              "value": "#iceform div:nth-child(6) input:nth-child(7)"
+            }
+          ]
+        },
+        "button": 0,
+        "wait": {
+          "waitFor": "network"
+        }
+      }
+    ]
+  },
+  "locations": [
+    "GEOLOCATION-4DBE735F24F26BD5",
+    "GEOLOCATION-0DF9A0E1095A5A62"
+  ],
+  "anomalyDetection": {
+    "outageHandling": {
+      "globalOutage": true,
+      "localOutage": false,
+      "localOutagePolicy": {
+        "affectedLocations": 1,
+        "consecutiveRuns": 3
+      }
+    },
+    "loadingTimeThresholds": {
+      "enabled": false,
+      "thresholds": []
+    }
+  },
+  "tags": [],
+  "managementZones": [],
+  "automaticallyAssignedApps": [],
+  "manuallyAssignedApps": [],
+  "keyPerformanceMetrics": {
+    "loadActionKpm": "VISUALLY_COMPLETE",
+    "xhrActionKpm": "VISUALLY_COMPLETE"
+  },
+  "events": [
+    {
+      "entityId": "SYNTHETIC_TEST_STEP-5BF60AFEE80E4F6E",
+      "name": "Homepage",
+      "sequenceNumber": 1
+    },
+    {
+      "entityId": "SYNTHETIC_TEST_STEP-2EF28FF42B67CF92",
+      "name": "Book Now",
+      "sequenceNumber": 2
+    },
+    {
+      "entityId": "SYNTHETIC_TEST_STEP-EDD79C0A1275F751",
+      "name": "Privacy Lock",
+      "sequenceNumber": 3
+    },
+    {
+      "entityId": "SYNTHETIC_TEST_STEP-DCD6E6C6256C5879",
+      "name": "Select User",
+      "sequenceNumber": 4
+    },
+    {
+      "entityId": "SYNTHETIC_TEST_STEP-979C3B6DA63BC27D",
+      "name": "Next",
+      "sequenceNumber": 5
+    },
+    {
+      "entityId": "SYNTHETIC_TEST_STEP-4E50ED878D44FC18",
+      "name": "Click Credit Card",
+      "sequenceNumber": 6
+    },
+    {
+      "entityId": "SYNTHETIC_TEST_STEP-DBA085660440BAE3",
+      "name": "Enter Credit Card",
+      "sequenceNumber": 7
+    },
+    {
+      "entityId": "SYNTHETIC_TEST_STEP-E706D8F927B800FE",
+      "name": "Enter CC Owner",
+      "sequenceNumber": 8
+    },
+    {
+      "entityId": "SYNTHETIC_TEST_STEP-DD54A9C0053F98FC",
+      "name": "Select Expiration Date",
+      "sequenceNumber": 9
+    },
+    {
+      "entityId": "SYNTHETIC_TEST_STEP-4894DC01D558DFD1",
+      "name": "Select Expiration Year",
+      "sequenceNumber": 10
+    },
+    {
+      "entityId": "SYNTHETIC_TEST_STEP-E0736A8AEB41D5F6",
+      "name": "Click Verification Number",
+      "sequenceNumber": 11
+    },
+    {
+      "entityId": "SYNTHETIC_TEST_STEP-40F038F227241223",
+      "name": "Enter Verification Number",
+      "sequenceNumber": 12
+    },
+    {
+      "entityId": "SYNTHETIC_TEST_STEP-C7D8257FB9187F19",
+      "name": "Submit CC",
+      "sequenceNumber": 13
+    }
+  ]
+}

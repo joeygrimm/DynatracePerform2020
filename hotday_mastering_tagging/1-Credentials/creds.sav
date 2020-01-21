@@ -1,0 +1,9 @@
+{
+
+"dynatraceTenantID": "DYNATRACE_TENANT_ID",
+
+"dynatraceApiToken": "DYNATRACE_API_TOKEN",
+
+"dynatracePaaSToken": "DYNATRACE_PAAS_TOKEN"
+
+}
