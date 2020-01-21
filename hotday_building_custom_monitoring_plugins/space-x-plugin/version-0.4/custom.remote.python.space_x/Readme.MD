@@ -1,6 +1,6 @@
 * The metric for the thrust is a bit more complex.
 * Thrust is being reported per engine - which makes it a multi dimensional metric
-* Complete the entry for that metric within '''plugin.json'''. Make sure to use a proper unit. Also don't forget to mention in there, that this metric has an additional dimension for the engine.
+* Complete the entry for that metric within ```plugin.json```. Make sure to use a proper unit. Also don't forget to mention in there, that this metric has an additional dimension for the engine.
 * Complete the python code that reports measurements for that metric
 
 * The Plugin also reports the property for the URL of every ship
