@@ -30,10 +30,10 @@
     },    
     {
       "timeseries": {
-        "key": "speed",
-        "unit": "Unspecified",
+        "key": "sattelite_latency",
+        "unit": "MilliSecond",
         "aggregation": "avg",
-        "displayname": "Speed(Knots)"
+        "displayname": "Latency"
       }
     }      
   ],
@@ -46,49 +46,14 @@
         "displayname" : "Thrust"
       },
       {
-        "key": "speed",
+        "key": "sattelite_latency",
         "aggregation" : "avg",
         "mergeaggregation" : "avg",
-        "displayname": "Speed(Knots)"
+        "displayname": "Latency"
       }
     ],
     "keycharts": [
-      {
-        "group": "Thrust",
-        "title": "Thrust",
-        "description": "Thrust",
-        "series": [
-          {
-            "key": "thrust",
-            "aggregation": "avg",
-            "displayname": "Thrust"
-          }
-        ]
-      },      
-      {
-        "group": "Fuel",
-        "title": "Fuel",
-        "description": "Fuel",
-        "series": [
-          {
-            "key": "fuel",
-            "aggregation": "min",
-            "displayname": "Fuel"
-          }
-        ]
-      },      
-      {
-        "group": "Speed",
-        "title": "Speed",
-        "description": "Speed",
-        "series": [
-          {
-            "key": "speed",
-            "aggregation": "avg",
-            "displayname": "Speed"
-          }
-        ]
-      }      
+      ...
     ],
     "charts": [
       {
@@ -114,6 +79,18 @@
             "key": "fuel",
             "aggregation": "min",
             "displayname": "Fuel"
+          }
+        ]
+      },
+      {
+        "group": "Latency",
+        "title": "Latency",
+        "description": "Latency",
+        "series": [
+          {
+            "key": "sattelite_latency",
+            "aggregation": "min",
+            "displayname": "Latency"
           }
         ]
       }

@@ -20,15 +20,7 @@
         "aggregation": "avg",
         "displayname": "Fuel"
       }
-    },    
-    {
-      "timeseries": {
-        "key": "speed",
-        "unit": "Unspecified",
-        "aggregation": "avg",
-        "displayname": "Speed(Knots)"
-      }
-    }      
+    }
   ],
   "ui": {
     "keymetrics" : [],

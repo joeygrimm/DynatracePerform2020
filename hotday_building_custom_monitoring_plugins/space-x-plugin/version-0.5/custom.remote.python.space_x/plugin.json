@@ -30,10 +30,10 @@
     },    
     {
       "timeseries": {
-        "key": "speed",
-        "unit": "Unspecified",
+        "key": "sattelite_latency",
+        "unit": "MilliSecond",
         "aggregation": "avg",
-        "displayname": "Speed(Knots)"
+        "displayname": "Latency"
       }
     }      
   ],
@@ -44,16 +44,20 @@
   },
   "properties" : [
 		{
-      "key": "url",
-      "type": "String",
-      "defaultValue": "http://localhost:5000",
-      "displayOrder": 1
+      "key": ...
+      "type": ...
+      "defaultValue": ...
+      "displayOrder": ...
 		}    
   ],
   "configUI" :{
-    "displayName": "Space X",
+    "displayName": ...,
     "properties" : [
-      { "key" : "url", "displayName": "URL", "displayOrder": 1 }
+      { 
+        "key" : ...,
+        "displayName": ...,
+        "displayOrder": 1
+      }
 		]
   }
 }

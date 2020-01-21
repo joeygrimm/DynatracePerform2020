@@ -30,10 +30,10 @@
     },    
     {
       "timeseries": {
-        "key": "speed",
-        "unit": "Unspecified",
+        "key": "sattelite_latency",
+        "unit": "MilliSecond",
         "aggregation": "avg",
-        "displayname": "Speed(Knots)"
+        "displayname": "Latency"
       }
     }      
   ],
@@ -41,15 +41,13 @@
     "keymetrics" : [
       {
         "key" : "thrust",
-        "aggregation" : "avg",
-        "mergeaggregation" : "avg",
-        "displayname" : "Thrust"
+        "aggregation" : ...,
+        "mergeaggregation" : ...,
+        "displayname" : ...
       },
       {
-        "key": "speed",
-        "aggregation" : "avg",
-        "mergeaggregation" : "avg",
-        "displayname": "Speed(Knots)"
+        "key": "sattelite_latency",
+        ...
       }
     ],
     "keycharts": [],

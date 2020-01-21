@@ -79,6 +79,18 @@
             "displayname": "Fuel"
           }
         ]
+      },
+      {
+        "group": "Latency",
+        "title": "Latency",
+        "description": "Latency",
+        "series": [
+          {
+            "key": "sattelite_latency",
+            "aggregation": "min",
+            "displayname": "Latency"
+          }
+        ]
       }
     ]
   },

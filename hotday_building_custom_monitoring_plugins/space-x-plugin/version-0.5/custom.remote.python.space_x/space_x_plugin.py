@@ -9,10 +9,9 @@ class SpaceXPlugin(RemoteBasePlugin):
 
     def initialize(self, **kwargs):
         self.config = kwargs['config']
-        self.base_url = self.config["url"]
+        self.base_url = self.config[...]
         
     def query(self, **kwargs):
-        logger.info('requesting data from %s' % self.base_url)
         ships = self.load_ships()
         ship_count = 0
         for ship_type, ships in ships.items():
@@ -28,10 +27,10 @@ class SpaceXPlugin(RemoteBasePlugin):
                     fuel = ship['fuel']
                     if fuel is not None:
                         device.absolute(key = 'fuel', value = fuel)
-                if 'speed_kn' in ship:
-                    speed = ship['speed_kn']
+                if 'sattelite_latency' in ship:
+                    speed = ship['sattelite_latency']
                     if speed is not None:
-                        device.absolute(key = 'speed', value = speed)
+                        device.absolute(key = 'sattelite_latency', value = speed)
                 if 'thrust' in ship:
                     thrust = ship['thrust']
                     for thrust_entry in thrust:
@@ -39,12 +38,27 @@ class SpaceXPlugin(RemoteBasePlugin):
                         power = thrust_entry['power']
                         device.absolute(key='thrust', value=power, dimensions = { 'engine': engine })
 
+                # tell dynatrace the IP address of the custom device
+                # Hint: the parameter for the port of an endpoint is optional
+                device.add_endpoint(ship['ship_ip'])
+                
+                if 'home_port' in ship:
+                    home_port = ship['home_port']
+                    if home_port is not None:
+                        device.report_property('Home Port', home_port)
+                if 'url' in ship:
+                    url = ship['url']
+                    if url is not None:
+                        device.report_property('URL', url)                        
+
         logger.info('%d ships found' % ship_count)
 
+    # loads a list of ships via HTTP    
     def load_ships(self):
+        logger.info('requesting data from %s/v3/ships' % self.base_url)
         results = {}
         resp = requests.get(self.base_url + "/v3/ships")
-        records = json.loads(resp.content)
+        records = resp.json
         for ship in records:
             ship_type = ship['ship_type']
             ships_for_type = []

@@ -16,9 +16,7 @@
     {
       "timeseries": {
         "key": "thrust",
-        "unit": "Percent",
-        "displayname": "Thrust",
-        "dimensions": [ "engine" ]
+        ...
       }
     },      {
       "timeseries": {
@@ -30,10 +28,10 @@
     },    
     {
       "timeseries": {
-        "key": "speed",
-        "unit": "Unspecified",
+        "key": "sattelite_latency",
+        "unit": "MilliSecond",
         "aggregation": "avg",
-        "displayname": "Speed(Knots)"
+        "displayname": "Latency"
       }
     }      
   ],

@@ -6,12 +6,9 @@ from ruxit.api.base_plugin import RemoteBasePlugin
 logger = logging.getLogger(__name__)
 
 class SpaceXPlugin(RemoteBasePlugin):
-
-    def initialize(self, **kwargs):
-        self.config = kwargs['config']
-        self.base_url = self.config["url"]
         
     def query(self, **kwargs):
+        self.base_url = "http://localhost:5000"
         logger.info('requesting data from %s' % self.base_url)
         ships = self.load_ships()
         ship_count = 0
@@ -38,9 +35,7 @@ class SpaceXPlugin(RemoteBasePlugin):
                         engine = thrust_entry['engine']
                         power = thrust_entry['power']
                         device.absolute(key='thrust', value=power, dimensions = { 'engine': engine })
-                        
-                # tell dynatrace the IP address of the custom device
-                # Hint: the parameter for the port of an endpoint is optional
+                
                 device.add_endpoint(ship['ship_ip'])
                 
                 if 'home_port' in ship:
@@ -50,7 +45,7 @@ class SpaceXPlugin(RemoteBasePlugin):
                 if 'url' in ship:
                     url = ship['url']
                     if url is not None:
-                        device.report_property('URL', url)                        
+                        device.report_property('URL', url)
 
         logger.info('%d ships found' % ship_count)
 

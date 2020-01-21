@@ -6,13 +6,9 @@ from ruxit.api.base_plugin import RemoteBasePlugin
 logger = logging.getLogger(__name__)
 
 class SpaceXPlugin(RemoteBasePlugin):
-
-    def initialize(self, **kwargs):
-        self.config = kwargs['config']
-        self.base_url = self.config["url"]
         
     def query(self, **kwargs):
-        logger.info('requesting data from %s' % self.base_url)
+        self.base_url = "http://localhost:5000"
         ships = self.load_ships()
         ship_count = 0
         for ship_type, ships in ships.items():
@@ -28,30 +24,6 @@ class SpaceXPlugin(RemoteBasePlugin):
                     fuel = ship['fuel']
                     if fuel is not None:
                         device.absolute(key = 'fuel', value = fuel)
-                if 'sattelite_latency' in ship:
-                    speed = ship['sattelite_latency']
-                    if speed is not None:
-                        device.absolute(key = 'sattelite_latency', value = speed)
-                if 'thrust' in ship:
-                    thrust = ship['thrust']
-                    for thrust_entry in thrust:
-                        engine = thrust_entry['engine']
-                        power = thrust_entry['power']
-                        device.absolute(key='thrust', value=power, dimensions = { 'engine': engine })
-                        
-                # tell dynatrace the IP address of the custom device
-                # Hint: the parameter for the port of an endpoint is optional
-                device.add_endpoint(ship['ship_ip'])
-                
-                if 'home_port' in ship:
-                    home_port = ship['home_port']
-                    if home_port is not None:
-                        device.report_property('Home Port', home_port)
-                if 'url' in ship:
-                    url = ship['url']
-                    if url is not None:
-                        device.report_property('URL', url)                        
-
         logger.info('%d ships found' % ship_count)
 
     # loads a list of ships via HTTP    
