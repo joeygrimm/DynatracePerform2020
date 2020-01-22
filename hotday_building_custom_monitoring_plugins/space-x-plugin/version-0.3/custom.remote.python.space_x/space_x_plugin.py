@@ -8,7 +8,7 @@ logger = logging.getLogger(__name__)
 class SpaceXPlugin(RemoteBasePlugin):
         
     def query(self, **kwargs):
-        self.base_url = "http://localhost:5000"
+        self.base_url = "http://35.161.232.230"
         ships = self.load_ships()
         ship_count = 0
         for ship_type, ships in ships.items():
@@ -25,6 +25,8 @@ class SpaceXPlugin(RemoteBasePlugin):
                     fuel = ship['fuel']
                     if fuel is not None:
                         device.absolute(key = 'fuel', value = fuel)
+                # report measurements for the sattelite latency
+                # does plugin.json already define that metric?
                         
         logger.info('%d ships found' % ship_count)
 
