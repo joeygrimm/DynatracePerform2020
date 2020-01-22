@@ -8,7 +8,7 @@ logger = logging.getLogger(__name__)
 class SpaceXPlugin(RemoteBasePlugin):
         
     def query(self, **kwargs):
-        self.base_url = "http://localhost:5000"
+        self.base_url = "http://35.161.232.230"
         logger.info('requesting data from %s' % self.base_url)
         ships = self.load_ships()
         ship_count = 0
@@ -36,6 +36,8 @@ class SpaceXPlugin(RemoteBasePlugin):
                         power = thrust_entry['power']
                         device.absolute(key='thrust', value=power, dimensions = { 'engine': engine })
                 
+                # tell dynatrace the IP address of the custom device
+                # Hint: the parameter for the port of an endpoint is optional
                 device.add_endpoint(ship['ship_ip'])
                 
                 if 'home_port' in ship:

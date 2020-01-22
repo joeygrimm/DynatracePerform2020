@@ -8,7 +8,7 @@ logger = logging.getLogger(__name__)
 class SpaceXPlugin(RemoteBasePlugin):
         
     def query(self, **kwargs):
-        self.base_url = "http://localhost:5000"
+        self.base_url = "http://35.161.232.230"
         ships = self.load_ships()
         ship_count = 0
         for ship_type, ships in ships.items():
