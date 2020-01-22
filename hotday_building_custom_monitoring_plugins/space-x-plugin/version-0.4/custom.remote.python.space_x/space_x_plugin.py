@@ -51,7 +51,7 @@ class SpaceXPlugin(RemoteBasePlugin):
         logger.info('requesting data from %s/v3/ships' % self.base_url)
         results = {}
         resp = requests.get(self.base_url + "/v3/ships")
-        records = resp.json
+        records = resp.json()
         for ship in records:
             ship_type = ship['ship_type']
             ships_for_type = []

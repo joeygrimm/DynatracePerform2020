@@ -38,7 +38,7 @@ class SpaceXPlugin(RemoteBasePlugin):
                         engine = thrust_entry['engine']
                         power = thrust_entry['power']
                         device.absolute(key='thrust', value=power, dimensions = { 'engine': engine })
-                        
+
                 # tell dynatrace the IP address of the custom device
                 # Hint: the parameter for the port of an endpoint is optional
                 device.add_endpoint(ship['ship_ip'])
@@ -59,7 +59,7 @@ class SpaceXPlugin(RemoteBasePlugin):
         logger.info('requesting data from %s/v3/ships' % self.base_url)
         results = {}
         resp = requests.get(self.base_url + "/v3/ships")
-        records = resp.json
+        records = resp.json()
         for ship in records:
             ship_type = ship['ship_type']
             ships_for_type = []
