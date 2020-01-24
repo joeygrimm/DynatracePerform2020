@@ -12,7 +12,6 @@ class SpaceXPlugin(RemoteBasePlugin):
         self.base_url = self.config["url"]
         
     def query(self, **kwargs):
-        logger.info('requesting data from %s' % self.base_url)
         ships = self.load_ships()
         ship_count = 0
         for ship_type, ships in ships.items():

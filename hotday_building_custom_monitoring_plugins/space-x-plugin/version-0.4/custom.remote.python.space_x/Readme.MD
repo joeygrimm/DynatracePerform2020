@@ -8,3 +8,5 @@
 
 * The IP Address of the Ship is yet another property you should report to Dynatrace
 * IP Addresses are very special for Dynatrace. Report it as a so-called EndPoint
+* Check out the ```Transactions and Services``` in Dynatrace. What changes can you notice here?
+* Check out the Infographics of one of the ships in Dynatrace. Apart from metrics, does it contain something in addition?
