@@ -28,7 +28,7 @@ function setupSheets() {
   for (var x = 0; x < sheets.length; x++) {
     sheets[x].setName('delete' + x);
   }
-  // insert two new sheets, one for data and one for config
+  // insert two new sheets, oone for data and one for config
   spreadsheet.insertSheet('Data', 0);
   spreadsheet.insertSheet('Config', 1);
   // delete the old sheets
@@ -67,7 +67,7 @@ function fetchDashboard() {
   
   // fetch the data
   var headers = { 'Authorization': 'Api-Token ' + api_key }
-  var url = 'https://' + tenant + '.sprint.dynatracelabs.com/api/config/v1/dashboards/' + dashboard;
+  var url = 'https://' + tenant + '.live.dynatrace.com/api/config/v1/dashboards/' + dashboard;
   var result = UrlFetchApp.fetch(encodeURI(url), {'headers': headers});
   result = JSON.parse(result);
   
@@ -76,6 +76,9 @@ function fetchDashboard() {
   var data = [['Name:', result.dashboardMetadata.name],
               ['Shared:', result.dashboardMetadata.shared]]
   data_sheet.getRange(1, 1, data.length, data[0].length).setValues(data);
+  // store the owner on the config sheet
+  data = [['Owner'],[result.dashboardMetadata.owner]];
+  config_sheet.getRange(1, 4, 2, 1).setValues(data);
   // loop through tiles and prep for writing
   data = [];
   for (var x = 0; x < result.tiles.length; x++) {
@@ -98,7 +101,7 @@ function updateDashboard() {
   // tenant
   var tenant = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Config').getRange(2, 1).getValue();
   // url for API
-  var url = 'https://' + tenant + '.sprint.dynatracelabs.com/api/config/v1/dashboards/' + dashboard;
+  var url = 'https://' + tenant + '.live.dynatrace.com/api/config/v1/dashboards/' + dashboard;
   
   // call processDashboard to handle the API call
   processDashboard(url, 'put', dashboard);
@@ -108,17 +111,21 @@ function createDashboard() {
   // tenant
   var tenant = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Config').getRange(2, 1).getValue();
   // url for API
-  var url = 'https://' + tenant + '.sprint.dynatracelabs.com/api/config/v1/dashboards';
+  var url = 'https://' + tenant + '.live.dynatrace.com/api/config/v1/dashboards';
   
   // call processDashboard to handle the API call
   processDashboard(url, 'post');
 }
 
 function processDashboard(url, method, id) {
+  // config sheet
+  var config_sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Config');
   // api key
-  var api_key = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Config').getRange(2, 2).getValue();
+  var api_key = config_sheet.getRange(2, 2).getValue();
   // tenant
-  var tenant = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Config').getRange(2, 1).getValue();
+  var tenant = config_sheet.getRange(2, 1).getValue();
+  // owner
+  var owner = config_sheet.getRange(2, 4).getValue();
   // data_sheet
   var data_sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Data');
   
@@ -126,7 +133,11 @@ function processDashboard(url, method, id) {
   var metadata = data_sheet.getRange(1, 2, 2, 1).getValues();
   var dashboardMetadata = {
       "name": metadata[0][0],
-      "shared": metadata[1][0]
+      "shared": metadata[1][0],
+      "owner": owner,
+      "sharingDetails": {
+        "published": true
+      }
     };
   
   // create the array of tiles
@@ -160,7 +171,7 @@ function processDashboard(url, method, id) {
     
   // display link to dashboard
   var htmlOutput = HtmlService
-    .createHtmlOutput('<a href="https://' + tenant + '.sprint.dynatracelabs.com/#dashboard;id=' + id + '" target="_blank">Check it out!</a>' +
+    .createHtmlOutput('<a href="https://' + tenant + '.live.dynatrace.com/#dashboard;id=' + id + '" target="_blank">Check it out!</a>' +
                       '<p>It may take a few seconds for the dashboard to get creted, so if it fails to load, just wait a few seconds and try again.</p>')
     .setWidth(600)
     .setHeight(120);
