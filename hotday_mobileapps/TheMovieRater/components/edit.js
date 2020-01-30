@@ -9,7 +9,7 @@ export default function Edit(props) {
 
   const saveMovie = () => {
     if(movie.id){
-      fetch(`http://ec2-54-236-255-155.compute-1.amazonaws.com:8079/api/movies/${movie.id}/`, {
+      fetch(`http://www.dynatraceworkshops.com:8079/api/movies/${movie.id}/`, {
       method: 'PUT',
       headers: {
         'Authorization': `Token ad99a678759cb7c771457680a6cc68cbec062de9`,
@@ -23,7 +23,7 @@ export default function Edit(props) {
       })
       .catch( error => console.log(error));
     } else {
-      fetch(`http://ec2-54-236-255-155.compute-1.amazonaws.com:8079/api/movies/`, {
+      fetch(`http://www.dynatraceworkshops.com:8079/api/movies/`, {
       method: 'POST',
       headers: {
         'Authorization': `Token ad99a678759cb7c771457680a6cc68cbec062de9`,
@@ -33,7 +33,6 @@ export default function Edit(props) {
       })
       .then( res => res.json())
       .then( movie => {
-        
         props.navigation.navigate("MovieList")
       })
       .catch( error => console.log(error));
@@ -82,7 +81,7 @@ Edit.navigationOptions = screenProps => ({
 const removeClicked = (props) => {
   const movie = props.navigation.getParam("movie")
   console.log(movie);
-  fetch(`http://ec2-54-236-255-155.compute-1.amazonaws.com:8079/api/movies/${movie.id}/`, {
+  fetch(`http://www.dynatraceworkshops.com:8079/api/movies/${movie.id}/`, {
       method: 'DELETE',
       headers: {
         'Authorization': `Token ad99a678759cb7c771457680a6cc68cbec062de9`,
