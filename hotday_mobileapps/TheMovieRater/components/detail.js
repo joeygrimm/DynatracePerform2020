@@ -22,7 +22,7 @@ export default function Detail(props) {
     getData();
     console.log("************************ Token in Detail is " + token + "++++++++++++++++++++++");
     if(highlight > 0 && highlight < 6){
-      fetch(`http://ec2-54-236-255-155.compute-1.amazonaws.com:8079/api/movies/${movie.id}/rate_movie/`, {
+      fetch(`http://www.dynatraceworkshops.com:8079/api/movies/${movie.id}/rate_movie/`, {
       method: 'POST',
       headers: {
         'Authorization': `Token ad99a678759cb7c771457680a6cc68cbec062de9`,

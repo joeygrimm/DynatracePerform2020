@@ -13,7 +13,7 @@ export default function Auth(props) {
 
   const auth = () => {
     if (regView) {
-      fetch(`http://ec2-54-236-255-155.compute-1.amazonaws.com:8079/api/users/`, {
+      fetch(`http://www.dynatraceworkshops.com:8079/api/users/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -26,7 +26,7 @@ export default function Auth(props) {
       })
       .catch( error => console.log(error));
     } else {
-      fetch(`http://ec2-54-236-255-155.compute-1.amazonaws.com:8079/auth/`, {
+      fetch(`http://www.dynatraceworkshops.com:8079/auth/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -42,12 +42,10 @@ export default function Auth(props) {
     }
   };
   const saveData = async (token) => {
-    console.log("*********************** MR_Token received" + token + " ********************************");
     await AsyncStorage.setItem('MR_Token', token)
   }
   const getData = async () => {
     const token = await AsyncStorage.getItem('MR_Token');
-    console.log("*********************** MR_Token retreived=" + token + " ********************************");
     if(token) props.navigation.navigate("MovieList");
   }
   const toggleView = () => {

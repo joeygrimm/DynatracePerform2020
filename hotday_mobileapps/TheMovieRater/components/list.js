@@ -21,7 +21,7 @@ export default function MovieList(props) {
 
   const getMovies = () => {
     console.log(token);
-    fetch(`http://ec2-54-236-255-155.compute-1.amazonaws.com:8079/api/movies/`, {
+    fetch(`http://www.dynatraceworkshops.com:8079/api/movies/`, {
       method: 'GET',
       headers: {
         'Authorization': `Token ${token}`
