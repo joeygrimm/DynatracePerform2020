@@ -81,13 +81,24 @@ function fetchAllMetrics() {
   // fetch the data
   var headers = { 'Authorization': 'Api-Token ' + api_key }
   var url = 'https://' + tenant + '.sprint.dynatracelabs.com/api/v2/metrics';
-  var result = UrlFetchApp.fetch(encodeURI(url), {'headers': headers});
-  result = JSON.parse(result);
   
   // organize data for writing to the sheet
   var data = [["METRIC KEY", "DESCRIPTION"]];
+  var more_metrics = null;
+  var result = UrlFetchApp.fetch(encodeURI(url + '?pageSize=1000'), {'headers': headers});
+  result = JSON.parse(result);
   for (var x = 0; x < result.metrics.length; x++){
     data.push([result.metrics[x].metricId, result.metrics[x].displayName]);
+  }
+  more_metrics = result.nextPageKey;
+  
+  while(more_metrics != null){
+    result = UrlFetchApp.fetch(encodeURI(url + '?nextPageKey=' + more_metrics), {'headers': headers});
+    result = JSON.parse(result);
+    for (var x = 0; x < result.metrics.length; x++){
+      data.push([result.metrics[x].metricId, result.metrics[x].displayName]);
+    }
+    more_metrics = result.nextPageKey;
   }
   
   // write the data to the sheet
@@ -128,12 +139,12 @@ function fetchDatapoints() {
   
   // handle dates if they've been set
   var start = new Date(config_sheet.getRange(2, 4).getValue()).getTime();
-  start = start == '' ? '' : '&start=' + start;
+  start = start == '' ? '' : '&from=' + start;
   var end = new Date(config_sheet.getRange(2, 5).getValue()).getTime();
-  end = end == '' ? '' : '&end=' + end;
+  end = end == '' ? '' : '&to=' + end;
   
   // handle resolution
-  var resolution = '?resolution=' + config_sheet.getRange(2, 6).getValue();
+  var resolution = '&resolution=' + config_sheet.getRange(2, 6).getValue();
   
   // clear existing data by creating a new data sheet
   clearData();
@@ -141,23 +152,25 @@ function fetchDatapoints() {
   
   // fetch the data
   var headers = { 'Authorization': 'Api-Token ' + api_key }
-  var url = 'https://' + tenant + '.sprint.dynatracelabs.com/api/v2/metrics/series/' + metric + resolution + start + end;
-  var result = UrlFetchApp.fetch(encodeURI(url), {'headers': headers});
+  var url = 'https://' + tenant + '.sprint.dynatracelabs.com/api/v2/metrics/query?metricSelector=' + metric + resolution + start + end;
+  try {
+    var result = UrlFetchApp.fetch(encodeURI(url), {'headers': headers});
   result = JSON.parse(result);
   
   // set up the data for writing to the sheet
   var data = [], headers = [''];
   // add the labels for timestamps
-  for (var x = 0; x < result.metrics[metric].series[0].values.length; x++) {
-    var d = new Date(result.metrics[metric].series[0].values[x].timestamp);
+  for (var x = 0; x < result.result[0].data[0].timestamps.length; x++) {
+    var d = new Date(result.result[0].data[0].timestamps[x]);
     headers.push(formatDate(d));
   }
   data.push(headers);
+  
   // add the data points
-  for (var x = 0; x < result.metrics[metric].series.length; x++) {
-    var line = [result.metrics[metric].series[x].dimensions[0]];
-    for (var y = 0; y < result.metrics[metric].series[x].values.length; y++) {
-      line.push(result.metrics[metric].series[x].values[y].value);
+  for (var x = 0; x < result.result[0].data.length; x++) {
+    var line = [result.result[0].data[x].dimensions.join(' / ')];
+    for (var y = 0; y < result.result[0].data[x].values.length; y++) {
+      line.push(result.result[0].data[x].values[y]);
     }
     data.push(line);
   }
@@ -168,7 +181,7 @@ function fetchDatapoints() {
   data_sheet.getRange(1, 1, 1, data[0].length).setFontWeight('bold');
   data_sheet.getRange(1, 1, data.length, 1).setFontWeight('bold');
   // band the data
-  data_sheet.getRange(2, 2, data.length - 1, data[0].length - 1).applyRowBanding(SpreadsheetApp.BandingTheme.LIGHT_GREY, false, false);
+  data_sheet.getRange(1, 1, data.length, data[0].length).applyRowBanding(SpreadsheetApp.BandingTheme.LIGHT_GREY, false, false);
   // fit the columns
   data_sheet.autoResizeColumns(1, data[0].length);
   
@@ -183,4 +196,10 @@ function fetchDatapoints() {
     .setOption('height', 600)
     .build();
   data_sheet.insertChart(chart);
+  } catch(e) {
+    // if there's no datapoints clear the metric from the config sheet, re-fetch the metric list, and alert the user
+    config_sheet.getRange(2, 3).clearContent();
+    fetchAllMetrics();
+    SpreadsheetApp.getUi().alert('No data for selected metric! Try a different metric please.');
+  }
 }
