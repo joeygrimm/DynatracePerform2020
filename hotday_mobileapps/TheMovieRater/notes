@@ -1,4 +1,8 @@
-// Dynatrace react-native plugin
+// Dynatrace react-native plugin site
 https://www.npmjs.com/package/@dynatrace/react-native-plugin
 
-//
+// Command to run to install DT plugin
+react-native install @dynatrace/react-native-plugin
+
+// Command to run to instrument the app
+npm run instrumentDynatrace
