@@ -3,6 +3,9 @@ import { StyleSheet, Text, View, Button, Alert } from 'react-native';
 import { FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 
+//ToDo
+//import { Dynatrace, Platform } from '@dynatrace/react-native-plugin';
+
 export default function Detail(props) {
 
   const movie = props.navigation.getParam('movie', null);
@@ -20,8 +23,9 @@ export default function Detail(props) {
   
   const rateClicked = () => {
     getData();
-    console.log("************************ Token in Detail is " + token + "++++++++++++++++++++++");
-    if(highlight > 0 && highlight < 6){
+    if(highlight > 0 && highlight < 6){ 
+      //ToDo
+      //Dynatrace.reportIntValue("Stars",  highlight);
       fetch(`http://www.dynatraceworkshops.com:8079/api/movies/${movie.id}/rate_movie/`, {
       method: 'POST',
       headers: {

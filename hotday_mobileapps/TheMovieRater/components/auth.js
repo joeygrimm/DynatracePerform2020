@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TextInput, Button, AsyncStorage, TouchableOpacity } from 'react-native';
 
+//ToDo
+//import { Dynatrace, Platform } from '@dynatrace/react-native-plugin';
+
 export default function Auth(props) {
 
   const [ username, setUsername] = useState("");
@@ -36,9 +39,16 @@ export default function Auth(props) {
         .then( res => res.json())
         .then( res => {
           saveData(res.token);
+	  //ToDo
+          // Dynatrace.identifyUser(username);
           props.navigation.navigate("MovieList");
         })
-        .catch( error => console.log(error));
+        .catch( error => {
+		console.log(error);
+		//ToDo
+		// Dynatrce.reportError("Invalid Login", -1);
+		}
+		);
     }
   };
   const saveData = async (token) => {
