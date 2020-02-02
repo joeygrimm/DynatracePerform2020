@@ -18,7 +18,7 @@
         timeout: 30
       register: environmentResponse
 
-    - name: Step 2 - Create Configuration Token for the environment {{ environmentResponse.json.id }} ({{teamName}})
+    - name: Step 2a - Create Configuration Token for the environment {{ environmentResponse.json.id }} ({{teamName}})
       uri: 
         url: "{{ clusterURL }}/e/{{ environmentResponse.json.id }}{{ tokensAPI }}"
         method: POST
@@ -31,6 +31,15 @@
       register: configTokenResponse
       when:
         - environmentResponse.status == 201
+
+    - name: Step 2b - Store the token in the file so it can be reused
+      copy:
+        content: "configToken: {{ configTokenResponse.json.token | quote }}"
+        dest: config-token.yaml
+    - name: Step 2c - Store the environment id in the file so it can be reused
+      copy:
+        content: "environmentID: {{ environmentResponse.json.id | quote }}"
+        dest: environment-id.yaml
     
     - name: Step 3 - Create the dashboard for the environment {{ environmentResponse.json.id }} ({{teamName}})
       uri: 
@@ -53,4 +62,4 @@
 
     - name: Print Dashboard URL
       debug:
-	msg: "Dashboard URL = {{ dashboardURL }}"
+        msg: "Dashboard URL = {{ dashboardURL }}"
