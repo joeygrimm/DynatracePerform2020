@@ -8,7 +8,8 @@ The content you will find here will be the actual synthetic config files (to be 
 
 
 ## SCRIPTING GUIDE
-Planning the script
+
+### Planning the script
 
 Before you record a script, identify the goals you want to accomplish. Here are some considerations:
 •	What functionality needs to be tested?
@@ -46,6 +47,7 @@ In order to take advantage of many of the various the Dynatrace Synthetic soluti
 Dynatrace University is the first and foremost resource for information, lessons, and tutorials on Dynatrace Synthetic Browser and HTTP Monitors.
 	+ Dynatrace University - https://university.dynatrace.com/ondemand/dynatrace
 	+ Dynatrace > Digital Experience Management > Synthetic 
+	
 
 ### Dynatrace Community
 	+ Dynatrace Community - https://community.dynatrace.com
