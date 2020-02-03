@@ -13,6 +13,20 @@ Mastering Business Transactions
 
 # Hands-on 1
 
+* User action naming
+  * Create a custom placeholder with input “Xhr Url” and extract after the trailing “?”
+  * Create a custom placeholder with input “Element identifier” and extract after the trailing “$”
+  * Add an XHR naming rule: {userInteraction} on "{Remove_amount}“
+  * Add an XHR naming rule: {XHR_URL_no_parameters}
+  * Add an XHR naming rule: {userInteraction} on "{elementIdentifier}"
+  * Deactivate “Case insensitive naming”
+* Define two key user actions
+  * click on “Sign In”
+  * click on “Book journey for”
+* Define a conversion goal
+  * User action name contains “book journey”
+* Create a dashboard including the key user actions and conversion goal
+
 ## Feature: user action naming
 * Access the Applications page and click on one of the applications
 * Click on the three dots button at the top-right and click on Edit
@@ -53,6 +67,17 @@ Validation
 
 # Hands-on 2
 
+* From the user session screen, create a funnel query
+* Take a look at each action and get to know the services they rely on
+* Check the “Book journey“ action
+* Define a key request: storeBooking
+* Add the key request to the dashboard
+* Understand dynamic requests and resource requests
+  * Is it a business problem if the image of a big marketing campaign is not loading?
+* Define a request naming for image requests
+  * URL path contains “dt-map”
+
+
 ## Feature: user session queries (also called USQL)
 * Access the User sessions page
 * Click on the "User session query" button
@@ -86,6 +111,17 @@ Validation
 
 # Hands-on 3
 
+* Define a request attribute based on the Java method parameter
+  * Class: com.dynatrace.easytravel.business.webservice.BookingService
+  * Method: private void checkLoyaltyStatus
+  * Argument: 2: java.lang.String
+* Define a request attribute based on the Java method parameter
+  * Class: com.dynatrace.easytravel.business.webservice.BookingService
+  * Method: public java.lang.String storeBooking
+  * Argument: 4: java.lang.Double
+* Create a multi-dimensional analysis chart, save the view
+  * Booking amount by loyalty status
+
 ## Feature: request attributes
 * Access the Settings page
 * Click on the group "Server-side service monitoring" and then click on "Request attributes"
@@ -111,6 +147,12 @@ Validation
 
 
 # Hands-on 4
+
+* Use the previously created multi-dimensional analysis view to create a new metric
+  * Request attribute “booking amount” by request attribute “loyalty status”
+* Click on advanced options too see the full configuration screen
+* Create custom chart and pin it to a dashboard
+* Create a new alerting rule based on the Calculated Service Metric"
 
 ## Feature: calculated service metrics
 * Access the Settings page
