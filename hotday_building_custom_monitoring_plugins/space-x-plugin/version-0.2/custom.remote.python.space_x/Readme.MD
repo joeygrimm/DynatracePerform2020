@@ -1,5 +1,7 @@
 * ```space_x_plugin.py``` now contains a method ```load_ships``` for fetching the list of ships via HTTP
 * Take a closer look that method. It tells you how to easily extract properties for a ship later on
+* Use a browser or PostMan to review the JSON data that is loaded
+* Hint: Host Name and path for the URL are hidden within the source code already
 * The method ```query``` now consists of two nested loops - the outer one iterating over the types of ships, the inner one iterating over the ships for each ship type
 * Complete the source code within these loops
 * For every ship type a technology group needs to get created
