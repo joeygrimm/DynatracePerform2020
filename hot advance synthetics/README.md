@@ -13,13 +13,13 @@ The content you will find here will be the actual synthetic config files (to be 
 
 Before you record a script, identify the goals you want to accomplish. Here are some considerations:
 
- • What functionality needs to be tested?
+....• What functionality needs to be tested?
  
- • Is this functionality supported by the Chrome browser agent?
+.....• Is this functionality supported by the Chrome browser agent?
  
- • What should the script flow look like?
+....• What should the script flow look like?
  
- • How do you make sure the script is going to function properly?
+....• How do you make sure the script is going to function properly?
 	
 Before beginning the recording, walk through the business process in a native Chrome browser to make sure there are no performance problems that would prevent the recorder from successfully recording and playing the script.
 
@@ -36,8 +36,8 @@ When you create a monitor, don't try to squeeze in as many functionalities as po
 When you have cleaned up the script, play back the script to ensure it plays back successfully before activating. 
 Script configuration best practices 
 
- • **Clean up** - Remove unnecessary events. For example, you clicked anywhere in the web page where there isn’t an element on accident, remove these click events. 
- • **Event naming** - Edit the default monitor and event names to provide unique and meaningful names. Using names that clearly identify the purpose of the monitor and each event makes maintaining the script easier.
+....• **Clean up** - Remove unnecessary events. For example, you clicked anywhere in the web page where there isn’t an element on accident, remove these click events. 
+.....• **Event naming** - Edit the default monitor and event names to provide unique and meaningful names. Using names that clearly identify the purpose of the monitor and each event makes maintaining the script easier.
  • **Validate everything** - Include a validation in each event. Sometimes the script will load a different page than expected but will return a success. To ensure that specific text or images are loaded and correctly displayed on a page, create a content validation rule to target specific text, CSS, or DOM elements. 
  • **Tag your monitor** – Tags are a flexible and powerful way to organize your environment. It is essential a good tagging strategy is in place. Tags are used throughout the portal in areas where defining a set of entities is necessary as a basis such as charts, alerting profiles, maintenance windows, management zones, and more. See [best practices and recommendations for tags](https://www.dynatrace.com/support/help/shortlink/tagging-best-practices).  
  • **QA for 24 Hours** – After the script has some time to run, verify it’s working as expected and adjust any events as needed (waits, locators, etc.) Once you have established a baseline of performance and the monitor is working as expected,  
