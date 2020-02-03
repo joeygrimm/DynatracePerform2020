@@ -1,6 +1,6 @@
 {
   "name": "custom.remote.python.space_x",
-  "version": "0.2",
+  "version": "0.1",
   "type": "python",
   "entity": "CUSTOM_DEVICE",
   "processTypeNames": ["PYTHON"],

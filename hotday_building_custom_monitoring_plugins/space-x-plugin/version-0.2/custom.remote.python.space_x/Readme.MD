@@ -8,3 +8,5 @@
 * For every ship of this ship type a custom device needs to get created
 * Hint: Extracting the unique identifier of a ship looks like this: ```ship['ship_id']```
 * Report the currently available fuel on the ship as a measurement
+
+* Your first attempt to redeploy the plugin may have failed. Why?
