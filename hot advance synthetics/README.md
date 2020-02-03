@@ -108,7 +108,7 @@ In addition to your script recorder there are many excellent web development too
 
 NBA API url: https://free-nba.p.rapidapi.com/games
 
-For the first HO session: 
+For the first HO exercise: 
 
 | Description | Input data |
 | --- | --- |
