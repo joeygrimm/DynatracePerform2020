@@ -14,9 +14,12 @@ The content you will find here will be the actual synthetic config files (to be 
 Before you record a script, identify the goals you want to accomplish. Here are some considerations:
 
  • What functionality needs to be tested?
+ 
  • Is this functionality supported by the Chrome browser agent?
+ 
  • What should the script flow look like?
-• How do you make sure the script is going to function properly?
+ 
+ • How do you make sure the script is going to function properly?
 	
 Before beginning the recording, walk through the business process in a native Chrome browser to make sure there are no performance problems that would prevent the recorder from successfully recording and playing the script.
 
