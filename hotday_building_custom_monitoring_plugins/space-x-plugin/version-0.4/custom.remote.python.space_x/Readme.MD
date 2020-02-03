@@ -6,6 +6,8 @@
 * The Plugin also reports the property for the URL of every ship
 * Replicate that code, in order to also report the Home Port of the ship
 
+* Add another metric for ```thrust``` and report the value
+* Note: A ship usually has multiple engines. Every engine has its own value for thrust
 * The IP Address of the Ship is yet another property you should report to Dynatrace
 * IP Addresses are very special for Dynatrace. Report it as a so-called EndPoint
 * Check out the ```Transactions and Services``` in Dynatrace. What changes can you notice here?
