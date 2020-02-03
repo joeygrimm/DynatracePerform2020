@@ -1,26 +1,20 @@
-# Bankjob
+# BankService
 
 This is a simple java application running in a container that executes different task in the background. The idea of this application is for educational purposes for creating a custom service and rename the transactions.  This way Dynatrace can automatically keep track of the different type of transactions being exposed via custom service.
 
 ## Running it
 
 ```bash
-docker run -d shinojosa/bankjob:v0.2
+docker run -d shinojosa/bankjob:perform2020
 ```
 
 > This command will pull the image from docker hub. You only need docker and an internet connection. 
-
-## Doing the exercise
-
-This application was made for an exercise presented on the EMEA Bootcamp. The principles and the hands-on exercise is presented in the following powerpoint presentation:
-
-### [Request naming and Custom Services (Slides)](https://dynatrace.sharepoint.com/:p:/s/Sales/EMEA/EfU8seuo31BEnEwM80dMD-4BsBQEKBSV_WL23KbXrGeN2Q?e=RDZTGS)
 
 #### Excurs
 
 #### *Enhancing and customizing the service detection via API* 
 This exercise was not handled in the sessions since we did not have time left. But it is just a POST request via our API. If you notice the BankService, there is a jobtype that calls URLs. All are from dynatrace and from different subdomains. Here is how you can split the different subdomains in different services so Dynatrace keeps track of the different services.
-https://notes.lab.dynatrace.org/enhancing-and-customizing-the-dynatrace-service-detection/#public-network-subdomains
+
 
 save the following json as `myapirule.json` file
  ```json
@@ -54,8 +48,8 @@ save the following json as `myapirule.json` file
  ```
 Now go to the GIT Terminal (since you have curl there installed) and export the following variables (Replace the values with your tenant and api-token)
 ```
-export TENANT=https://vxt526.managed-sprint.dynalabs.io/e/sergio-hinojosa/
-export TOKEN=2-AHF3jOTsOe_XxMA7RYj
+export TENANT=https://ABC.managed.dynatrace.com/e/tenant-id/
+export TOKEN=XXXXX
 ```
 Do a curl post request with the JSON payload.
 `curl -X POST -H "Content-Type: application/json" -H "Authorization: Api-Token $TOKEN" -d @myapirule.json $TENANT/api/config/v1/service/detectionRules/OPAQUE_AND_EXTERNAL_WEB_REQUEST`
