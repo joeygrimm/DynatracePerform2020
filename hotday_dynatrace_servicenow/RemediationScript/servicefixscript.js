@@ -1,0 +1,12 @@
+var request = new sn_ws.RESTMessageV2();
+request.setHttpMethod('post');
+request.setEndpoint('http://35.155.209.33:8080/config');
+request.setRequestHeader('Content-Type', 'application/json');
+var body = "{ \"SlowdownConfig\" : { \"SlowdownMillis\" : 500, \"Count\": 1 } }";
+request.setRequestBody(body);
+var response = request.execute();
+var httpResponseStatus = response.getStatusCode();
+var httpResponseContentType = response.getHeader('Content-Type');
+var parser = new global.JSONParser();
+var parsed = {};
+var httpResponseBody;
