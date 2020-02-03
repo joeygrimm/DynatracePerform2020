@@ -14,8 +14,8 @@ Mastering Business Transactions
 # Hands-on 1
 
 * User action naming
-  * Create a custom placeholder with input “Xhr Url” and extract after the trailing “?”
-  * Create a custom placeholder with input “Element identifier” and extract after the trailing “$”
+  * Add a placeholder called “XHR_URL_no_parameters” with input “Xhr Url” and extract after the trailing “?”
+  * Add a placeholder called “Remove_amount” with input “Element identifier” and extract after the trailing “$”
   * Add an XHR naming rule: {userInteraction} on "{Remove_amount}“
   * Add an XHR naming rule: {XHR_URL_no_parameters}
   * Add an XHR naming rule: {userInteraction} on "{elementIdentifier}"
@@ -68,6 +68,9 @@ Validation
 # Hands-on 2
 
 * From the user session screen, create a funnel query
+
+SELECT FUNNEL(useraction.name='loading of page /easytravel/home' AS 'Home', useraction.name='click on "Search"' AS 'Search', useraction.name='click on "Sign In"' AS 'Sign in', useraction.name='click on "Book Now"' AS 'Book journey', useraction.name LIKE '*BOOK JOURNEY*' AS 'Final booking') FROM usersession
+
 * Take a look at each action and get to know the services they rely on
 * Check the “Book journey“ action
 * Define a key request: storeBooking
