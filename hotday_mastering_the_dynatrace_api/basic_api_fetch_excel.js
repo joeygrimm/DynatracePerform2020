@@ -90,22 +90,14 @@ function run_usql() {
     var api_key = config_sheet.getCell(1, 1).load("values");
     // query
     var usql_query = config_sheet.getCell(1, 2).load("values");
-    // start and end
-    var start_string = config_sheet.getCell(1, 3).load("values");
-    var end_string = config_sheet.getCell(1, 4).load("values");
+    
 
     return context.sync().then(async function() {
       // fetch the data
-      var start = new Date((start_string.values - (25567 + 1)) * 86400 * 1000).getTime();
-      var end = new Date((end_string.values - (25567 + 1)) * 86400 * 1000).getTime();
       var url =
         "https://" +
         tenant.values +
-        ".sprint.dynatracelabs.com/api/v1/userSessionQueryLanguage/table?startTimestamp=" +
-        start +
-        "&endTimestamp=" +
-        end +
-        "&query=" +
+        ".sprint.dynatracelabs.com/api/v1/userSessionQueryLanguage/table?query=" +
         encodeURIComponent(usql_query.values);
       var headers = { headers: { Authorization: "Api-Token " + api_key.values } };
       try {
@@ -121,13 +113,13 @@ function run_usql() {
       // 1 | 2 | 3
       // 4 | 5 | 6
       var data = [];
-      
+
       // loop through the data and add to the array making adjustments for any arrays in the data
       for (var x = 0; x < result.values.length; x++) {
         data[x] = [];
-        for (var y = 0; y < result.values[x].length; y++){
-          if (Array.isArray(result.values[x][y])){
-            data[x].push(result.values[x][y].join(' | '));
+        for (var y = 0; y < result.values[x].length; y++) {
+          if (Array.isArray(result.values[x][y])) {
+            data[x].push(result.values[x][y].join(" | "));
           } else {
             data[x].push(result.values[x][y]);
           }
@@ -160,3 +152,4 @@ function tryCatch(callback) {
       console.error(error);
     });
 }
+

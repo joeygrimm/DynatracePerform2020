@@ -1,0 +1,10 @@
+log/*
+data/*
+csv/*-*
+csv/temp/*-*
+env*
+*-*/*
+*mine*
+*test*
+**__pycache*
+**.pyc

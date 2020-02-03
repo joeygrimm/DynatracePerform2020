@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<unload unload_date="2019-11-04 11:13:09">
+<em_alert_correlation_rule action="INSERT_OR_UPDATE">
+<active>true</active>
+<advanced>true</advanced>
+<advanced_filter table="em_alert">sourceSTARTSWITHDYNATRACE^EQ<item goto="false" or="false" field="source" endquery="false" value="DYNATRACE" operator="STARTSWITH" newquery="false"/>
+<item goto="false" or="false" field="" endquery="true" value="" operator="=" newquery="false"/>
+</advanced_filter>
+<description>Recreate the Dynatrace correlation of alerts by using the problem id</description>
+<filter_child table="em_alert"/>
+<filter_parent table="em_alert"/>
+<name>Dynatrace alert correlation rule</name>
+<order>100</order>
+<relationship display_value=""/>
+<relationship_type>1</relationship_type>
+<script><![CDATA[/*
+	NOTICE: THIS RULE IS NON-ACTIVE BY DEFAULT.
+			YOU MUST ACTIVATE THE RULE IN ORDER TO WATCH IT WORK.
+			
+	The 2 following variables must be configured for this script to work. Alerts will be correlated by the values of these variables. See the "CONFIG:" header below for examples.
+		1. exactMatchGroupingFields - List of fields in the alerts whose values have an exact match
+		2. timeDifferenceInMinutes - Time difference between the creation (initial) time of primary alert to all following alerts
+	All conditions must be met for the script to work.
+	
+	The returned result is an object with 2 keys:
+		1. PRIMARY
+		2. SECONDARY
+	Where:
+		1. Value for each key is an array of strings with existing, valid alert sys_id's
+		2. PRIMARY has 1 sys_id
+		3. SECONDARY can have from 1 to n sys_id's
+	And:
+		The actual result object is returned after passing through JSON.stringify(result)
+	
+	Example: 
+	{'PRIMARY': ['f18b9ae673111300f1459361e5f6a7e3'], 'SECONDARY': ['3018dc7473111300f1459361e5f6a72c', 'c959d8f473111300f1459361e5f6a748']}
+*/
+ (function findCorrelatedAlerts(currentAlert){
+	 var additional_info = currentAlert.getValue('additional_info');
+	 var additional_info_json = JSON.parse(additional_info);
+	 //gs.log("Dynatrace alert correlation " + additional_info); 
+	 var problem_id = additional_info_json['problem_id']; 
+	 var event_is_root_cause = additional_info_json['isRootCause']; 
+	 // Default 60 minutes between the first alert and the alerts that follow 
+	 var timeDifferenceInMinutes = 60; 
+	 // Initialization
+	 var result = {};
+	 
+	 // Get the alert that may be the parent of the current alert by answering the conditions. 
+	 // If the alert is primary - make the current alert secondary, else - do nothing.
+	 
+	 // Prepare time diff for the query
+	 var timeDifferenceBetweenAlerts = new GlideDateTime(currentAlert.getValue('initial_remote_time'));
+	 var timeDifferenceInMilliSeconds = Number(timeDifferenceInMinutes) * 1000 * 60;
+	 timeDifferenceBetweenAlerts.subtract(timeDifferenceInMilliSeconds);
+	
+	 var gr = new GlideRecord('em_alert');
+	 //var problem_id = currentAlert.getValue('problem_id');
+	 
+	 gr.addQuery('additional_info', 'CONTAINS', problem_id);
+	 // Add query to search for alerts that are not closed by relation of potential parent (0 or 1) in time window (60) and order by time of creation
+	 //gr.addQuery('state', 'NOT IN', 'Closed');
+	 gr.addQuery('correlation_rule_group', 'IN', '0,1'); // 0 = None (potential parent) | 1 = Primary alert (parent) | 2 = Secondary
+	 gr.addQuery('initial_remote_time', '>=', timeDifferenceBetweenAlerts);
+	 gr.orderBy('initial_remote_time');
+	 
+	 gr.query();
+	 if (gr._next()) {
+		 if(event_is_root_cause === "true") {
+			 result = {
+				 'PRIMARY': [currentAlert.sys_id], 
+				 'SECONDARY': [gr.getUniqueValue()]
+			 };
+		 }
+		 else {
+			 result = {
+				 'PRIMARY': [gr.getUniqueValue()], 
+				 'SECONDARY': [currentAlert.sys_id] 
+			 };
+		 }
+	 }
+	 return JSON.stringify(result);
+	 
+ })(currentAlert);]]></script>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2019-10-16 12:22:26</sys_created_on>
+<sys_domain>global</sys_domain>
+<sys_id>ac1921d1db68c410470990e5db961925</sys_id>
+<sys_mod_count>22</sys_mod_count>
+<sys_overrides display_value=""/>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2019-10-25 07:45:59</sys_updated_on>
+<table>em_alert</table>
+<time_difference>60</time_difference>
+</em_alert_correlation_rule>
+</unload>

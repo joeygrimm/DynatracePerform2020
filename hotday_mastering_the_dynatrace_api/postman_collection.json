@@ -1,0 +1,738 @@
+{
+    "info": {
+        "_postman_id": "fa04047a-4e9c-4b4b-a2c2-0d933a0fdf91",
+        "name": "Perform 2020 Hotday",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Example 1 - Generic API query",
+            "item": [
+                {
+                    "name": "USQL query",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{server}}/api/v1/userSessionQueryLanguage/:style?query=SELECT country, city, COUNT(*) FROM usersession GROUP BY country, city&explain=false",
+                            "host": [
+                                "{{server}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "userSessionQueryLanguage",
+                                ":style"
+                            ],
+                            "query": [
+                                {
+                                    "key": "query",
+                                    "value": "SELECT country, city, COUNT(*) FROM usersession GROUP BY country, city"
+                                },
+                                {
+                                    "key": "explain",
+                                    "value": "false",
+                                    "description": "true,false"
+                                }
+                            ],
+                            "variable": [
+                                {
+                                    "key": "style",
+                                    "value": "table",
+                                    "description": "tree,table"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ],
+            "protocolProfileBehavior": {}
+        },
+        {
+            "name": "Example 2 - Host report",
+            "item": [
+                {
+                    "name": "Query hosts",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{server}}/api/v1/entity/infrastructure/hosts?pageSize=10&includeDetails=false&showMonitoringCandidates=false",
+                            "host": [
+                                "{{server}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "entity",
+                                "infrastructure",
+                                "hosts"
+                            ],
+                            "query": [
+                                {
+                                    "key": "hostGroupName",
+                                    "value": "",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "tag",
+                                    "value": "",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "pageSize",
+                                    "value": "10"
+                                },
+                                {
+                                    "key": "nextPageKey",
+                                    "value": "",
+                                    "description": "check in header for Next-Page-Key",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "includeDetails",
+                                    "value": "false",
+                                    "description": "true,false"
+                                },
+                                {
+                                    "key": "showMonitoringCandidates",
+                                    "value": "false",
+                                    "description": "true,false"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ],
+            "protocolProfileBehavior": {}
+        },
+        {
+            "name": "Example 3 - Metric Report",
+            "item": [
+                {
+                    "name": "Get metrics",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{server}}/api/v2/metrics?pageSize=1000&fields=-displayName,-description,-unit&metricSelector=builtin:host.*",
+                            "host": [
+                                "{{server}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v2",
+                                "metrics"
+                            ],
+                            "query": [
+                                {
+                                    "key": "pageSize",
+                                    "value": "1000"
+                                },
+                                {
+                                    "key": "fields",
+                                    "value": "+transformations,+aggregationTypes",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "fields",
+                                    "value": "-displayName,-description,-unit"
+                                },
+                                {
+                                    "key": "metricSelector",
+                                    "value": "builtin:host.*"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get host metric details",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{server}}/api/v2/metrics/:metricId",
+                            "host": [
+                                "{{server}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v2",
+                                "metrics",
+                                ":metricId"
+                            ],
+                            "variable": [
+                                {
+                                    "key": "metricId",
+                                    "value": "builtin:apps.other.apdex.osAndVersion",
+                                    "description": "append :merge(1)"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Query host datapoints",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{server}}/api/v2/metrics/query?metricSelector=builtin:host.disk.avail&resolution=h&from=now-2h&to=now-1h",
+                            "host": [
+                                "{{server}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v2",
+                                "metrics",
+                                "query"
+                            ],
+                            "query": [
+                                {
+                                    "key": "metricSelector",
+                                    "value": "builtin:host.disk.avail",
+                                    "description": "append merge(1)"
+                                },
+                                {
+                                    "key": "resolution",
+                                    "value": "h",
+                                    "description": "m,h,d,w,M,y"
+                                },
+                                {
+                                    "key": "from",
+                                    "value": "now-2h",
+                                    "description": "TS,ISO,relative"
+                                },
+                                {
+                                    "key": "to",
+                                    "value": "now-1h",
+                                    "description": "TS,ISO,relative"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get application metrics",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{server}}/api/v2/metrics?pageSize=1000&fields=-displayName,-description,-unit,+dimensionDefinitions&metricSelector=builtin:apps.web.*",
+                            "host": [
+                                "{{server}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v2",
+                                "metrics"
+                            ],
+                            "query": [
+                                {
+                                    "key": "pageSize",
+                                    "value": "1000"
+                                },
+                                {
+                                    "key": "fields",
+                                    "value": "+transformations,+aggregationTypes",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "fields",
+                                    "value": "-displayName,-description,-unit,+dimensionDefinitions"
+                                },
+                                {
+                                    "key": "metricSelector",
+                                    "value": "builtin:apps.web.*"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get application metric details ",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{server}}/api/v2/metrics/:metricId",
+                            "host": [
+                                "{{server}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v2",
+                                "metrics",
+                                ":metricId"
+                            ],
+                            "variable": [
+                                {
+                                    "description": "append :merge(1)",
+                                    "key": "metricId",
+                                    "value": "builtin:apps.other.apdex.osAndVersion:names"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Query application datapoints",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{server}}/api/v2/metrics/query?metricSelector=builtin:apps.other.apdex.osAndVersion:names:merge(1,3):avg&resolution=h&from=now-2h&to=now-1h&entitySelector=type(MOBILE_APPLICATION)",
+                            "host": [
+                                "{{server}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v2",
+                                "metrics",
+                                "query"
+                            ],
+                            "query": [
+                                {
+                                    "key": "metricSelector",
+                                    "value": "builtin:apps.other.apdex.osAndVersion:names:merge(1,3):avg",
+                                    "description": ":merge(1,2):avg"
+                                },
+                                {
+                                    "key": "resolution",
+                                    "value": "h",
+                                    "description": "m,h,d,w,M,y"
+                                },
+                                {
+                                    "key": "from",
+                                    "value": "now-2h",
+                                    "description": "TS,ISO,relative"
+                                },
+                                {
+                                    "key": "to",
+                                    "value": "now-1h",
+                                    "description": "TS,ISO,relative"
+                                },
+                                {
+                                    "key": "entitySelector",
+                                    "value": "type(MOBILE_APPLICATION)"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ],
+            "protocolProfileBehavior": {}
+        },
+        {
+            "name": "Example 4 - Dashboard Editor",
+            "item": [
+                {
+                    "name": "Get Dashboards",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{server}}/api/config/v1/dashboards",
+                            "host": [
+                                "{{server}}"
+                            ],
+                            "path": [
+                                "api",
+                                "config",
+                                "v1",
+                                "dashboards"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Dashboards details",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{server}}/api/config/v1/dashboards/:id",
+                            "host": [
+                                "{{server}}"
+                            ],
+                            "path": [
+                                "api",
+                                "config",
+                                "v1",
+                                "dashboards",
+                                ":id"
+                            ],
+                            "variable": [
+                                {
+                                    "key": "id",
+                                    "value": "618165d4-6760-493f-bd8a-7af87c1a45b7"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update Dashboard",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "name": "Content-Type",
+                                "value": "application/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n    \"metadata\": {\r\n        \"configurationVersions\": [\r\n            3\r\n        ],\r\n        \"clusterVersion\": \"1.187.0.20200128-233125\"\r\n    },\r\n    \"id\": \"618165d4-6760-493f-bd8a-7af87c1a45b7\",\r\n    \"dashboardMetadata\": {\r\n        \"name\": \"Game of Tilefilters Season 3\",\r\n        \"shared\": false,\r\n        \"owner\": \"demo@dynatrace.com\",\r\n        \"sharingDetails\": {\r\n            \"linkShared\": true,\r\n            \"published\": false\r\n        },\r\n        \"dashboardFilter\": {\r\n            \"timeframe\": \"l_2_HOURS\",\r\n            \"managementZone\": null\r\n        }\r\n    },\r\n    \"tiles\": [\r\n        {\r\n            \"name\": \"Header\",\r\n            \"tileType\": \"HEADER\",\r\n            \"configured\": true,\r\n            \"bounds\": {\r\n                \"top\": 0,\r\n                \"left\": 0,\r\n                \"width\": 304,\r\n                \"height\": 38\r\n            },\r\n            \"tileFilter\": {\r\n                \"timeframe\": null,\r\n                \"managementZone\": null\r\n            }\r\n        }\r\n    ]\r\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{server}}/api/config/v1/dashboards/:id",
+                            "host": [
+                                "{{server}}"
+                            ],
+                            "path": [
+                                "api",
+                                "config",
+                                "v1",
+                                "dashboards",
+                                ":id"
+                            ],
+                            "variable": [
+                                {
+                                    "key": "id",
+                                    "value": "618165d4-6760-493f-bd8a-7af87c1a45b7"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ],
+            "protocolProfileBehavior": {}
+        },
+        {
+            "name": "Example 5 - Maintenance windows",
+            "item": [
+                {
+                    "name": "Get maintenance windows",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{server}}/api/config/v1/maintenanceWindows/:id",
+                            "host": [
+                                "{{server}}"
+                            ],
+                            "path": [
+                                "api",
+                                "config",
+                                "v1",
+                                "maintenanceWindows",
+                                ":id"
+                            ],
+                            "variable": [
+                                {
+                                    "key": "id",
+                                    "value": ""
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create new maintenance window",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "name": "Content-Type",
+                                "value": "application/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"metadata\": {\n        \"configurationVersions\": [\n            0\n        ],\n        \"clusterVersion\": \"1.187.0.20200128-233125\"\n    },\n    \"name\": \"Harrys-test\",\n    \"description\": \"\",\n    \"type\": \"PLANNED\",\n    \"suppression\": \"DETECT_PROBLEMS_AND_ALERT\",\n    \"scope\": {\n        \"entities\": [],\n        \"matches\": [\n            {\n                \"type\": null,\n                \"managementZoneId\": null,\n                \"tags\": [],\n                \"tagCombination\": \"AND\"\n            }\n        ]\n    },\n    \"schedule\": {\n        \"recurrenceType\": \"ONCE\",\n        \"start\": \"2019-03-30 02:00\",\n        \"end\": \"2019-03-30 05:00\",\n        \"zoneId\": \"Europe/Vienna\"\n    }\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{server}}/api/config/v1/maintenanceWindows",
+                            "host": [
+                                "{{server}}"
+                            ],
+                            "path": [
+                                "api",
+                                "config",
+                                "v1",
+                                "maintenanceWindows"
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ],
+            "protocolProfileBehavior": {}
+        },
+        {
+            "name": "Example 6 - External Events",
+            "item": [
+                {
+                    "name": "Query hosts",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{server}}/api/v1/entity/infrastructure/hosts?pageSize=10&includeDetails=false&showMonitoringCandidates=false",
+                            "host": [
+                                "{{server}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "entity",
+                                "infrastructure",
+                                "hosts"
+                            ],
+                            "query": [
+                                {
+                                    "key": "hostGroupName",
+                                    "value": "",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "tag",
+                                    "value": "",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "pageSize",
+                                    "value": "10"
+                                },
+                                {
+                                    "key": "nextPageKey",
+                                    "value": "",
+                                    "description": "check in header for Next-Page-Key",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "includeDetails",
+                                    "value": "false",
+                                    "description": "true,false"
+                                },
+                                {
+                                    "key": "showMonitoringCandidates",
+                                    "value": "false",
+                                    "description": "true,false"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Send new event",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "name": "Content-Type",
+                                "value": "application/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n  \"eventType\": \"CUSTOM_ANNOTATION\",\r\n  \"timeoutMinutes\": 0,\r\n  \"attachRules\": {\r\n    \"entityIds\": [\r\n      \"\"\r\n    ],\r\n    \"tagRule\": [\r\n      {\r\n        \"meTypes\": [\r\n          \"HOST\"\r\n        ],\r\n        \"tags\": [\r\n          {\r\n            \"context\": \"CONTEXTLESS\",\r\n            \"key\": \"customTag\"\r\n          }\r\n        ]\r\n      }\r\n    ]\r\n  },\r\n  \"source\": \"OpsControl\",\r\n  \"annotationType\": \"defect\",\r\n  \"annotationDescription\": \"The coffee machine is broken\"\r\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{server}}/api/v1/events",
+                            "host": [
+                                "{{server}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "events"
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ],
+            "protocolProfileBehavior": {}
+        },
+        {
+            "name": "Example 7 - Custom devices and metrics",
+            "item": [
+                {
+                    "name": "Create metric",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "name": "Content-Type",
+                                "value": "application/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n  \"displayName\": \"my.coffees\",\r\n  \"unit\": \"Count\",\r\n  \"dimensions\": [\r\n    \"office\"\r\n  ],\r\n  \"types\": [\r\n    \"coffee machine\"\r\n  ]\r\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{server}}/api/v1/timeseries/:metric",
+                            "host": [
+                                "{{server}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "timeseries",
+                                ":metric"
+                            ],
+                            "variable": [
+                                {
+                                    "key": "metric",
+                                    "value": "custom:my.metric"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Send timeseries data",
+                    "event": [
+                        {
+                            "listen": "prerequest",
+                            "script": {
+                                "id": "9c6a9cd2-900d-45f0-8d37-e0a9a4195947",
+                                "exec": [
+                                    "const moment = require('moment');\r",
+                                    "pm.globals.set(\"timestamp\", moment().format(\"x\"));"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "name": "Content-Type",
+                                "value": "application/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n  \"displayName\": \"coffeeMachine\",\r\n  \"group\": \"myCustomDeviceGroup\",\r\n  \"ipAddresses\": [\r\n    \"10.0.0.1\"\r\n  ],\r\n  \"listenPorts\": [\r\n    80\r\n  ],\r\n  \"favicon\": \"https://www.freefavicon.com/freefavicons/food/cup-of-coffee-152-78475.png\",\r\n  \"configUrl\": \"http://coffee-machine.dynatrace.internal.com/coffeemachine/manage\",\r\n  \"type\": \"coffee machine\",\r\n  \"properties\": {},\r\n  \"tags\": [\r\n    \"office-linz\"\r\n  ],\r\n  \"series\": [\r\n    {\r\n      \"timeseriesId\": \"custom:my.metric\",\r\n      \"dimensions\": {\r\n        \"office\": \"Linz\"\r\n      },\r\n      \"dataPoints\": [\r\n        [\r\n        \t{{timestamp}},\r\n           13\r\n        ]\r\n      ]\r\n    }\r\n  ],\r\n  \"hostNames\": [\r\n    \"coffee-machine.dynatrace.internal.com\"\r\n  ]\r\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{server}}/api/v1/entity/infrastructure/custom/:customDeviceId",
+                            "host": [
+                                "{{server}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "entity",
+                                "infrastructure",
+                                "custom",
+                                ":customDeviceId"
+                            ],
+                            "variable": [
+                                {
+                                    "key": "customDeviceId ",
+                                    "value": ""
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ],
+            "protocolProfileBehavior": {}
+        }
+    ],
+    "auth": {
+        "type": "apikey",
+        "apikey": [
+            {
+                "key": "key",
+                "value": "Authorization",
+                "type": "string"
+            },
+            {
+                "key": "value",
+                "value": "Api-Token {{token}}",
+                "type": "string"
+            }
+        ]
+    },
+    "event": [
+        {
+            "listen": "prerequest",
+            "script": {
+                "id": "74c12fe4-ae5d-4eb0-9b84-ee5015b03059",
+                "type": "text/javascript",
+                "exec": [
+                    ""
+                ]
+            }
+        },
+        {
+            "listen": "test",
+            "script": {
+                "id": "af02ad27-cdb5-4b90-b03d-2e22a150763e",
+                "type": "text/javascript",
+                "exec": [
+                    ""
+                ]
+            }
+        }
+    ],
+    "protocolProfileBehavior": {}
+}

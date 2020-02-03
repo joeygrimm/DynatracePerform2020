@@ -1,0 +1,76 @@
+
+https://dev-wiki.dynatrace.org/pages/viewpage.action?spaceKey=DEV&title=easyTravel+REST+interfaces
+
+https://community.dynatrace.com/community/pages/viewpage.action?title=Available+easyTravel+Problem+Patterns&spaceKey=DL
+
+8094
+
+curl http://ec2-35-165-117-152.us-west-2.compute.amazonaws.com:8094/scenario/which
+
+
+UEM/Standard with REST Service and Angular2
+
+http://localhost:8091/services/ConfigurationService/setPluginEnabled?name=CPULoadJourneyService&enabled=true
+
+:1697/ping	
+Simply returns the string "pong". Can be used to verify that the REST interfaces are working
+
+http://localhost:1697/version	
+Returns the version of easyTravel that is running on this machine
+
+http://localhost:1697/statusAll	
+Returns a list of all known procedures and their current state (both from a scenario running on that launcher as well as procedures started remotely in a distributed)
+
+http://localhost:1697/stopAll	
+Allows to stop all procedures started on a remote launcher in a distributed environment. Note: this does not include a normal scenario, use the 8094/scenario/stop interface described above instead for this. Returns "OK" on success.
+
+http://localhost:1697/shutdown	
+Stop any executing scenario and any locally executing procedure and shutdown this launcher instance, returns "OK" on success.
+
+http://localhost:1697/syntheticReq/true
+Enables/disables synthetic web requests
+
+http://localhost:1697/loadValue/30	
+Sets base load value
+
+http://localhost:1697/manualVisits/true	
+Enables/disables manual visits
+
+
+py rta.py easytravel plugin WebPageRequestSpamming true
+py rta.py easytravel plugin WebPageRequestSpamming false
+py rta.py easytravel plugin LoginProblems true
+py rta.py easytravel plugin LoginProblems false
+py rta.py easytravel plugin AngularBookingError500 true
+py rta.py easytravel plugin AngularBookingError500 false
+py rta.py easytravel plugin UsabilityIssue true
+py rta.py easytravel plugin UsabilityIssue false
+
+WebPageRequestSpamming
+LoginProblems
+AngularBookingError500
+UsabilityIssue
+
+
+py rta.py easytravel plugin CPULoadJourneyService true
+
+CPULoadJourneyService - ok
+
+DBSpammingAuthWithAppDeployment - mom active
+
+JourneyUpdateSlow
+
+SuperBowl is at Sunday 6:30 PM ET  -> UTC  00:30 Monday
+
+############# crontab -e
+
+* m = The minute when the cron job will run. (0 to 59)
+* h = A integer determining the hour when the tasks will run. (0 to 23)
+* dom = Day of the Month when the cron job will run. (1 to 31).
+* mon = The month when the cron job will run. (1 to 12)
+* dow = Day of the Week from 0-6 with Sunday at 0. (0 to 6)
+* user = The name of the User under which the cron will run.
+* command = The linux command you wish to execute.
+
+30 23 * * 0 sh /home/dynatrace/rta/problem-sun.sh >> /home/dynatrace/rta/log/cron-sun.log 2>&1
+30 13 * * 6 sh /home/dynatrace/rta/problem-sat.sh >> /home/dynatrace/rta/log/cron-sat.log 2>&1

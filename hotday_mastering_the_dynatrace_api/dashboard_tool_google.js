@@ -76,6 +76,9 @@ function fetchDashboard() {
   var data = [['Name:', result.dashboardMetadata.name],
               ['Shared:', result.dashboardMetadata.shared]]
   data_sheet.getRange(1, 1, data.length, data[0].length).setValues(data);
+  // store the owner on the config sheet
+  data = [['Owner'],[result.dashboardMetadata.owner]];
+  config_sheet.getRange(1, 4, 2, 1).setValues(data);
   // loop through tiles and prep for writing
   data = [];
   for (var x = 0; x < result.tiles.length; x++) {
@@ -115,10 +118,14 @@ function createDashboard() {
 }
 
 function processDashboard(url, method, id) {
+  // config sheet
+  var config_sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Config');
   // api key
-  var api_key = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Config').getRange(2, 2).getValue();
+  var api_key = config_sheet.getRange(2, 2).getValue();
   // tenant
-  var tenant = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Config').getRange(2, 1).getValue();
+  var tenant = config_sheet.getRange(2, 1).getValue();
+  // owner
+  var owner = config_sheet.getRange(2, 4).getValue();
   // data_sheet
   var data_sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Data');
   
@@ -126,7 +133,11 @@ function processDashboard(url, method, id) {
   var metadata = data_sheet.getRange(1, 2, 2, 1).getValues();
   var dashboardMetadata = {
       "name": metadata[0][0],
-      "shared": metadata[1][0]
+      "shared": metadata[1][0],
+      "owner": owner,
+      "sharingDetails": {
+        "published": true
+      }
     };
   
   // create the array of tiles

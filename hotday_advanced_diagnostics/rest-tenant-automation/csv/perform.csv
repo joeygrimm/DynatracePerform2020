@@ -1,0 +1,2 @@
+email;Comment;firstName;lastName;session;skip;sshUser;sshPassword;tenantId;tenantLogin;tenantPassword;tenantToken;tenantUrl;groupId;publicDnsName;publicIpAddress
+sergio.hinojosa@dynatrace.com;"Some comment ";Sergio;Hinojosa;monday1;FALSE;dtu.training;sshPassword;blq99840.sprint.dynatracelabs.com;studentABC@trial.dynatracelabs.com;somePassword;secretToken;https://blq99840.sprint.dynatracelabs.com;blq99840.sprint.dynatracelabs.com-group;;44.233.2.38
