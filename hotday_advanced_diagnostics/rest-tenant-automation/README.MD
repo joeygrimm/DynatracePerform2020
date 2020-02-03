@@ -1,13 +1,13 @@
 # 🤖🔃👩‍💻Dynatrace REST Tenant Automation
 
-Pyhton program that create and automates environments via Dynatrace API and Amazon API. This small program will create for each entry in a CSV file an environment, user, user_group, an EC2 Instance with custom deployment, a custom dashboard and a synthetic test. It is highly expandable and modifiable. The results will be written in a JSON file and back into the CSV file. The rows can be controled with control-flags.
+Python program that create and automates environments via Dynatrace API and Amazon API. This small program will create for each entry in a CSV file an environment, user, user_group, an EC2 Instance with custom deployment, a custom dashboard and a synthetic test. It is highly expandable and modifiable. The results will be written in a JSON file and back into the CSV file. The rows can be controled with control-flags.
 
 ## ⚠ TODO Documentation
 There has been quite some changes to the application. It has been renamed to RTA for REST Tenant Automation since it supports actions as checking the availability of EasyTravel as well as activating problem patterns via REST, connecting and managing instances on the cloud (via REST and SSH), automating SaaS and Managed tenants.
 Library added sudo py -m pip install pexpect
 ## Features in a Nutshell
 
-- Read and write in a CSV file
+- Read and write in a CSV file controled by flags
 
 - Write results in JSON format
 
@@ -24,6 +24,8 @@ Library added sudo py -m pip install pexpect
   - tenant token
 
 - Logging
+  
+- Execute Remote Commands via SSH
 
 - Create an environment, user and user_group
 
@@ -60,7 +62,6 @@ python 3
 pip install -r requirements.txt
 
 aws account (optional for the ec2-actions)
-
 
 
 ## How does it work?
@@ -178,7 +179,6 @@ By default AWS has a limit of 20 multiple instances running. You might want to c
 ## Ideas for Improvement
 
 - Document the flow of the program.
-
 - make a more generic template to add more actions
 - parametrize the creation of EC2 instances in its own JSON file. Most part (except from the user-data) is hard-coded.
 - The EC2 instaces due the technical requirements are quite large (size large) and have a 30Gig disk due the installing an ActiveGate with Private Monitors capabilities.

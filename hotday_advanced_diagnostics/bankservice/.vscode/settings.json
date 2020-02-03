@@ -1,0 +1,33 @@
+/*
+    "workbench.colorCustomizations": {
+        "tab.activeBackground": "#16181b",
+        "activityBar.background": "#282c34",
+        "activityBar.foreground": "#13bb37",
+        "activityBarBadge.foreground": "#13bb37",
+        "sideBar.background": "#16181b",
+        "editor.background": "#131313" 
+    },
+
+{
+    "workbench.colorCustomizations": {
+        "activityBar.foreground": "#13bb37",
+        "activityBarBadge.foreground": "#13bb37",
+    },
+    "java.configuration.updateBuildConfiguration": "automatic"
+}
+*/
+{
+    "files.exclude": {
+        "**/.classpath": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/.factorypath": true
+    },
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "workbench.colorCustomizations": {
+        "activityBar.foreground": "#13bb37",
+        "activityBarBadge.foreground": "#13bb37",
+        "statusBar.background": "#2a0d4e",
+        "statusBarItem.remoteBackground": "#0a5f02a2"
+    }
+}

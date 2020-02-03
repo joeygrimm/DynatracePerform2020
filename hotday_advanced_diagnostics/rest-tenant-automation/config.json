@@ -1,0 +1,36 @@
+{
+	"cmc": {
+		"cmc_url": "https://xxxx.dynatrace-managed.com",
+		"cmc_token": "XXXXXXXXYYYYYYYYY"
+	},
+	"csv_dir": "csv",
+	"csv_file": "perform.csv",
+	"log_dir": "log",
+	"log_file": "rta.log",
+	"aws": {
+		"aws_dir": "aws",
+		"user_data": "ubuntu-setup-perform.sh"
+	},
+	"action_test": {
+		"tenant_api": true,
+		"ssh_connection": true,
+		"easytravel_ping": true
+	},
+	"action_create": {
+		"create_tenant": false,
+		"create_user_group": false,
+		"create_user": true,
+		"create_allinone_token": true,
+		"create_ec2_instance": true,
+		"fetch_ec2_instance": true,
+		"set_up_env": true
+	},
+	"action_remove": {
+		"deactivate_tenant": false,
+		"remove_tenant": false,
+		"delete_user_group": false,
+		"delete_user": false,
+		"delete_ec2_instance": false
+	}
+}
+
