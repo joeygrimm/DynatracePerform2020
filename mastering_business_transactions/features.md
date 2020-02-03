@@ -14,8 +14,8 @@ Mastering Business Transactions
 # Hands-on 1
 
 * User action naming
-  * Create a custom placeholder with input “Xhr Url” and extract after the trailing “?”
-  * Create a custom placeholder with input “Element identifier” and extract after the trailing “$”
+  * Add a placeholder called “XHR_URL_no_parameters” with input “Xhr Url” and extract after the trailing “?”
+  * Add a placeholder called “Remove_amount” with input “Element identifier” and extract after the trailing “$”
   * Add an XHR naming rule: {userInteraction} on "{Remove_amount}“
   * Add an XHR naming rule: {XHR_URL_no_parameters}
   * Add an XHR naming rule: {userInteraction} on "{elementIdentifier}"
