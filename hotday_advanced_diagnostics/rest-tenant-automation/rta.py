@@ -491,10 +491,8 @@ def set_up_environment(data):
     """
     # Create Dashboard
     """
-
     environment_create_dashboards(data)
 
-    """
     # Change name My WebApplication to CathAll for NonConfiguredApps
     response = do_tenant_put(API_EP_TENANT_DEFAULTAPP, data, SKEL_DEFAULTAPP)
     validate_set_action_status(response, data, 'rename_defaultapp')
@@ -541,10 +539,8 @@ def set_up_environment(data):
     logging.info('Management zones:\t' +
                  data[key_email] + ':' + str(responses))
 
-    """
-
-    """
     # Add Synthetic test
+    """ 
     post_data = copy.copy(SKEL_TXT_MONITOR)
     post_data = post_data.replace(
         key_publicDnsName, str(data.get(key_publicDnsName)))
