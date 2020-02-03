@@ -140,5 +140,5 @@ We will have 7 browser clickpaths and one HTTP monitor with some advance synthet
 
 ## Acknowledgments
 
-* Hat tip to all the Insights team that created all the advanced use cases scripts. I you need help please reach out to insightssupport@dynatrace.com
+* Hat tip to all the Insights team that created all the advanced use cases scripts. If you'd like to know more about insights feel free to email to insightssupport@dynatrace.com
 
