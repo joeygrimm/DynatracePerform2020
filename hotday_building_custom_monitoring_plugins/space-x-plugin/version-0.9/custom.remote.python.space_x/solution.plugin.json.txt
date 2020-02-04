@@ -1,0 +1,177 @@
+{
+  "name": "custom.remote.python.space_x",
+  "version": "0.9",
+  "type": "python",
+  "entity": "CUSTOM_DEVICE",
+  "processTypeNames": ["PYTHON"],
+  "technologies": ["SpaceX Ships"],
+  "metricGroup": "spacex",
+  "source": {
+    "package": "space_x_plugin",
+    "className": "SpaceXPlugin",
+    "install_requires": ["requests>=2.6.0"],
+    "activation": "Remote"
+  },
+  "metrics": [
+    {
+      "timeseries": {
+        "key": "thrust",
+        "unit": "Percent",
+        "displayname": "Thrust",
+        "dimensions": [ "engine" ]
+      }
+    },      {
+      "timeseries": {
+        "key": "fuel",
+        "unit": "Unspecified",
+        "aggregation": "avg",
+        "displayname": "Fuel"
+      }
+    },    
+    {
+      "timeseries": {
+        "key": "sattelite_latency",
+        "unit": "MilliSecond",
+        "aggregation": "avg",
+        "displayname": "Latency"
+      }
+    },    
+    {
+      "statetimeseries": {
+        "key": "weather",
+        "states": ["Fair",
+          "Cloudy",
+          "Sunny",
+          "Rainy",
+          "Stormy",
+          "Snowy",
+          "Windy",
+          "Hail"
+        ],
+        "displayname": "Weather"
+      }
+    }      
+  ],
+  "ui": {
+    "keymetrics" : [
+      {
+        "key" : "thrust",
+        "aggregation" : "avg",
+        "mergeaggregation" : "avg",
+        "displayname" : "Thrust"
+      },
+      {
+        "key": "sattelite_latency",
+        "aggregation" : "avg",
+        "mergeaggregation" : "avg",
+        "displayname": "Latency"
+      }
+    ],
+    "keycharts": [
+      {
+        "group": "SpaceX",
+        "title": "Thrust",
+        "description": "Thrust",
+        "series": [
+          {
+            "key": "thrust",
+            "aggregation": "avg",
+            "displayname": "Thrust"
+          }
+        ]
+      },      
+      {
+        "group": "SpaceX",
+        "title": "Fuel",
+        "description": "Fuel",
+        "series": [
+          {
+            "key": "fuel",
+            "aggregation": "min",
+            "displayname": "Fuel"
+          }
+        ]
+      },      
+      {
+        "group": "SpaceX",
+        "title": "Latency",
+        "description": "Latency",
+        "series": [
+          {
+            "key": "sattelite_latency",
+            "aggregation": "avg",
+            "displayname": "Latency"
+          }
+        ]
+      }      
+    ],
+    "charts": [
+      {
+        "group": "Thrust",
+        "title": "Thrust",
+        "description": "Thrust",
+        "series": [
+          {
+            "key": "thrust",
+            "aggregation": "avg",
+            "mergeaggregation" : "avg",
+            "displayname": "Thrust",
+            "dimensions": [ "engine" ]
+          }
+        ]
+      },
+      {
+        "group": "Fuel",
+        "title": "Fuel",
+        "description": "Fuel",
+        "series": [
+          {
+            "key": "fuel",
+            "aggregation": "min",
+            "displayname": "Fuel"
+          }
+        ]
+      },
+      {
+        "group": "Latency",
+        "title": "Latency",
+        "description": "Latency",
+        "series": [
+          {
+            "key": "sattelite_latency",
+            "aggregation": "min",
+            "displayname": "Latency"
+          }
+        ]
+      },
+      {
+        "group": "Weather",
+        "title": "Weather",
+        "description": "Weather",
+        "series": [
+          {
+            "key": "weather",
+            "displayname": " ",
+            "seriestype": "bar",
+            "statecolors": [ "#CD6155", "#AF7AC5", "#5499C7", "#48C9B0", "##58D68D", "##F4D03F", "#EB984E", "#5D6D7E" ],
+            "statechart": true
+          }
+        ]
+      }
+    ]
+  },
+  "properties" : [
+		{
+      "key": "url",
+      "type": "String",
+      "defaultValue": "http://localhost:5000",
+      "displayOrder": 1
+		}    
+  ],
+  "configUI" :{
+    "displayName": "Space X",
+    "properties" : [
+      { "key" : "url", "displayName": "URL", "displayOrder": 1 }
+		]
+  }
+}
