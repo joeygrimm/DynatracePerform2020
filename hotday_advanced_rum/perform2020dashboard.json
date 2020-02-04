@@ -5,11 +5,11 @@
     ],
     "clusterVersion": "1.185.106.20200131-130312"
   },
-  "id": "5d3c3208-2f80-42cf-b28d-2e0c9364ba67",
+  "id": "YOUR_DASHBOARD_ID",
   "dashboardMetadata": {
     "name": "Perform HOT Days 2020",
     "shared": false,
-    "owner": "student1218Perform2020@trial.dynatracelabs.com",
+    "owner": "YOUR_LOGIN",
     "sharingDetails": {
       "linkShared": true,
       "published": false
