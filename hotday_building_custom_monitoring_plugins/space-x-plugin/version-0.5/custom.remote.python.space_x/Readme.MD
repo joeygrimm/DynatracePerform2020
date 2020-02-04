@@ -4,3 +4,4 @@
 * It evaluates the base URL that has been hard coded previously before the method ```query``` is being called
 * Complete the code within method ```initialize```. Hint: use the same key you have been using within ```plugin.json```
 * There exists a new file ```properties.json```. What is it used for? Add the missing content to this file.
+* Why is your plugin not getting executed automatically after you have uploaded this version?
