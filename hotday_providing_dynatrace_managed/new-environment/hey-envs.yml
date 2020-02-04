@@ -52,10 +52,7 @@
         status_code: 201,404
         timeout: 30
       register: dashboardResponse
-      when:
-        - environmentResponse.status == 201
-        - configTokenResponse.status == 201
-
+    
     - name: Set dashboard URL
       set_fact:
         dashboardURL: "{{ clusterURL }}/e/{{ environmentResponse.json.id }}/#dashboard;id={{ dashboardResponse.json.id }}"
