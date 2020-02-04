@@ -1,0 +1,14 @@
+User Action Naming Rule:
+{userInteraction} "{elementIdentifier}" {pageUrlPath}
+
+User Tag: 
+
+#summary > div:nth-child(2) > p
+
+.greeting (CSS Selector) 
+Regex: Hi, (.*+)
+
+Request Attribute Class: com.dynatrace.easytravel.business.webservice.BookingService
+Loyalty method: checkLoyaltyStatus (2nd java argument value)
+Revenue method: storeBooking (4th java argument value)
+

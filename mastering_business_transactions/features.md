@@ -69,7 +69,7 @@ Validation
 
 * From the user session screen, create a funnel query
 
-SELECT FUNNEL(useraction.name='loading of page /easytravel/home' AS 'Home', useraction.name='click on "Search"' AS 'Search', useraction.name='click on "Sign In"' AS 'Sign in', useraction.name='click on "Book Now"' AS 'Book journey', useraction.name LIKE '*BOOK JOURNEY*' AS 'Final booking') FROM usersession
+SELECT FUNNEL(useraction.name='loading of page /easytravel/home' AS 'Home', useraction.name='click on "Search"' AS 'Search', useraction.name='click on "Sign In"' AS 'Sign in', useraction.name='click on "Book Now"' AS 'Book journey', useraction.name='click on "BOOK JOURNEY FOR "' AS 'Final booking') FROM usersession
 
 * Take a look at each action and get to know the services they rely on
 * Check the “Book journey“ action
