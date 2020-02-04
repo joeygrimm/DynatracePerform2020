@@ -1,0 +1,25 @@
+Name:  EasyTravel-REST-Login
+
+Type the HTTP request URL
+http://easytravel.freeddns.org:9080/easytravel/rest/login
+
+Enable Post Execution Script
+if (response.getStatusCode() != 200) {
+    api.fail("HTTP error: " + response.getStatusCode());
+}
+var responseBody = response.getResponseBody();
+api.info(responseBody);
+
+Set Additional HTTP Headers
+Header Name:  Content-Type
+Header Value: application/json
+
+Request body
+{
+	"username": "yaseminwen",
+	"password": "yaseminwen"
+}
+
+Set Rules for Response Validation
+Pass if text contains 
+"firstName":"Yasemin"

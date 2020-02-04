@@ -1,0 +1,17 @@
+Name:  EasyTravel-REST-CreditAuthCheck
+
+Type the HTTP request URL
+http://easytravel.freeddns.org:9080/easytravel/rest/validate-creditcard
+
+Set Additional HTTP Headers
+Header Name:  Content-Type
+Header Value: application/json
+
+Request body
+{
+	"creditCardNumber": "9121769940739708"
+}
+
+Set Rules for Response Validation
+Pass if text contains 
+{"valid":true}
