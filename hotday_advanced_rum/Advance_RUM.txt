@@ -2,6 +2,9 @@ User Action Naming Rule:
 {userInteraction} "{elementIdentifier}" {pageUrlPath}
 
 User Tag: 
+
+#summary > div:nth-child(2) > p
+
 .greeting (CSS Selector) 
 Regex: Hi, (.*+)
 
