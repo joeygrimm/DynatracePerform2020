@@ -1,0 +1,2 @@
+EasyTravel Angular - http://easytravel.freeddns.org:9080/
+EasyTravel -  http://easytravel.freeddns.org:8079/
